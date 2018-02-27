@@ -25,7 +25,7 @@ android {
     // https://technobells.com/best-way-to-store-your-api-keys-for-your-android-studio-project-e4b5e8bb7d23
     // store api key in gradle.properties helper link is above.
     buildTypes.each {
-        it.buildConfigField 'String' , 'MOVIE_DB_API_KEY' , apiKey
+        it.buildConfigField 'String' , 'MOVIE_DB_API_KEY' , api_key
     }
 
     repositories {

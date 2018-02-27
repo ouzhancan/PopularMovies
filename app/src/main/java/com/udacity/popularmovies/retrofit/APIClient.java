@@ -1,5 +1,7 @@
 package com.udacity.popularmovies.retrofit;
 
+import com.udacity.popularmovies.utilities.NetworkUtil;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -13,23 +15,30 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class APIClient {
 
     private static Retrofit retrofit = null;
+    private static OkHttpClient.Builder client = null;
 
-    static Retrofit getClient() {
+    public static Retrofit getClient() {
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+        client = new OkHttpClient.Builder();
+        client.addInterceptor(interceptor);
 
+        if (retrofit != null) {
+            retrofit = null;
+        }
 
-        retrofit = new Retrofit.Builder()
-                .baseUrl("https://reqres.in")
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(client)
-                .build();
-
-
+        if(client!=null){
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(NetworkUtil.BASE_MOVIE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .client(client.build())
+                    .build();
+        }
 
         return retrofit;
     }
+
+
 
 }

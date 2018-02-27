@@ -4,27 +4,35 @@ package com.udacity.popularmovies.retrofit;
  * Created by ouz on 24/02/18.
  */
 
-import retrofit2.http.Body;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
+
+import com.udacity.popularmovies.model.ImageContainer;
+import com.udacity.popularmovies.model.Movie;
+import com.udacity.popularmovies.model.MovieContainer;
+import com.udacity.popularmovies.utilities.NetworkUtil;
+
+import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface APIInterface {
 
-    /*
-    @GET("/api/unknown")
-    Call<MultipleResource> doGetListResources();
 
-    @POST("/api/users")
-    Call<User> createUser(@Body User user);
+    /* API GET MOVIES request path variations */
+    @GET(NetworkUtil.POPULAR_MOVIE_PATH)
+    Call<MovieContainer> getPopularMovies(@Query("api_key")String api_key);
 
-    @GET("/api/users?")
-    Call<UserList> doGetUserList(@Query("page") String page);
+    @GET(NetworkUtil.TOP_RATED_MOVIE_PATH)
+    Call<MovieContainer> getTopRatedMovies(@Query("api_key")String api_key);
 
-    @FormUrlEncoded
-    @POST("/api/users?")
-    Call<UserList> doCreateUserWithField(@Field("name") String name, @Field("job") String job);
-    */
+    @GET("{movie_id}")
+    Call<Movie> getMovieById(@Path("movie_id") String movie_id, @Query("api_key")String api_key);
+    /* *** *** *** */
+
+    /* API GET IMAGE request path variations */
+    @GET("{movie_id}/"+NetworkUtil.MOVIE_IMAGE_PATH)
+    Call<ImageContainer> getImagesByMovieId(@Query("api_key")String api_key);
+
+    /* *** *** *** */
+
 }

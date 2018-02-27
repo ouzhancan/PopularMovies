@@ -1,5 +1,6 @@
 package com.udacity.popularmovies;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +12,10 @@ import android.widget.TextView;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapterViewHolder> {
 
+    Context context;
 
-    public MovieAdapter() {
+    public MovieAdapter(Context mContext) {
+        this.context = mContext;
     }
 
     @Override

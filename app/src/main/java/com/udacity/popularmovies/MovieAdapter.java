@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.udacity.popularmovies.model.MovieContainer;
+
 /**
  * Created by ouz on 24/02/18.
  */
@@ -13,6 +15,7 @@ import android.widget.TextView;
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapterViewHolder> {
 
     Context context;
+    MovieContainer movieContainer;
 
     public MovieAdapter(Context mContext) {
         this.context = mContext;
@@ -50,5 +53,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
         public void onClick(View v) {
             int adapterPosition = getAdapterPosition();
         }
+    }
+
+    public void setData(MovieContainer data) {
+        movieContainer = data;
+        notifyDataSetChanged();
     }
 }

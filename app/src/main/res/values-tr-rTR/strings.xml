@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Popular Movies</string>
+    <string name="action_settings">Seçenekler</string>
+    <string name="action_sort_popular">En Popüler Olanlar</string>
+    <string name="action_sort_top_movies">En Yüksek Oy Alanlar</string>
+    <string name="showcase_title">İşte Film Listesi</string>
+    <string name="thumbnail_content_desc">Film afişi</string>
+</resources>

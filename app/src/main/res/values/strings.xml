@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Popular Movies</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_settings_desc">Settings Description</string>
+    <string name="action_sort_popular">Sort by Popular</string>
+    <string name="action_sort_popular_desc">if select this option movies are sorted by popularity</string>
+    <string name="action_sort_top_movies">Sort by Top</string>
+    <string name="action_sort_top_movies_desc">if select this option movies are sorted by votes</string>
+    <string name="showcase_title">Here are movies</string>
+    <string name="thumbnail_content_desc">Movie cover image</string>
 </resources>

@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#eeefef</color>
+    <color name="colorPrimaryDark">#b7b7b7</color>
+    <color name="colorAccent">#16085e</color>
 
-    <color name="background">#f1f5f8</color>
+    <color name="background">#c8a0b5c6</color>
     <color name="movie_title">#4c4c4c</color>
+    <color name="movie_title_background">#dfe1e2</color>
+    <color name="backdrop_title">#353434</color>
+    <color name="app_title">#f5f3c3</color>
 </resources>

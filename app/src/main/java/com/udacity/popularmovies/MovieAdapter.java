@@ -1,6 +1,7 @@
 package com.udacity.popularmovies;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,17 +27,16 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
     MovieContainer movieContainer;
     List<Movie> movieList;
 
-    public MovieAdapter(Context mContext) {
+    public MovieAdapter(Context mContext, List<Movie> movies) {
         this.context = mContext;
+        this.movieList = movies;
     }
 
     @Override
     public MovieAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        //Context mContext = parent.getContext();
-
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.movie_card,parent,false);
+        View view = inflater.inflate(R.layout.movie_card, parent, false);
 
         MovieAdapterViewHolder viewHolder = new MovieAdapterViewHolder(view);
 
@@ -45,28 +45,33 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
 
     @Override
     public void onBindViewHolder(MovieAdapterViewHolder holder, int position) {
+
         final Movie movie = movieList.get(position);
 
         holder.movie_title.setText(movie.getTitle());
 
         Picasso.with(context)
-                .load(NetworkUtil.buildImageUrl(movie.getPoster_path()).toString()).into(holder.movie_poster);
-
-
-        holder.movie_poster.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("CLICK_POSTER",movie.getTitle()+ " POSTER has CLICKED !");
-            }
-        });
+                .load(NetworkUtil.buildImageUrl(movie.getPoster_path()).toString())
+                .into(holder.movie_poster);
     }
 
     @Override
     public int getItemCount() {
 
-        return movieList.size();
+        if (movieList != null && movieList.size() > 0)
+            return movieList.size();
+        else
+            return 0;
     }
 
+    @Override
+    public long getItemId(int position) {
+
+        if (movieList != null && movieList.size() > 0)
+            return new Long(movieList.get(position).getId());
+        else
+            return 0;
+    }
 
     public class MovieAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
@@ -75,12 +80,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
 
         public MovieAdapterViewHolder(View view) {
             super(view);
-            view.setOnClickListener(this);
 
             movie_poster = view.findViewById(R.id.movie_thumbnail);
             movie_title = view.findViewById(R.id.movie_title);
 
-            movie_poster.setOnClickListener(this);
+            //movie_poster.setOnClickListener(this);
+
+            view.setOnClickListener(this);
         }
 
         /**
@@ -91,16 +97,22 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
         @Override
         public void onClick(View v) {
 
-            int adapterPosition = getAdapterPosition();
+            Movie selectedMovie = movieList.get(getAdapterPosition());
+            Log.d("CLICK_POSTER", " THUMBNAIL POSTER has CLICKED !\nHere is the ID : " + selectedMovie.getTitle());
 
-            if(v.getId() == R.id.movie_thumbnail){
-                Log.d("CLICK_POSTER"," THUMBNAIL POSTER has CLICKED !");
-            }
+            Intent intent = new Intent(context,DetailActivity.class);
+            intent.putExtra("movie_id",selectedMovie.getId());
+            context.startActivity(intent);
         }
     }
 
     public void setData(MovieContainer data) {
         movieContainer = data;
+
+        if (movieContainer != null) {
+            movieList = movieContainer.getResults();
+        }
+
         notifyDataSetChanged();
     }
 }

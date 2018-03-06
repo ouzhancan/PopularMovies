@@ -1,10 +1,16 @@
 <resources>
     <string name="app_name">Popular Movies</string>
+    <string name="error_message">No data was received !</string>
+    <string name="connection_error_message">
+        There is not a stable network connection !
+        Please connect a network and then refresh the list.</string>
     <string name="action_settings">Settings</string>
     <string name="action_settings_desc">Settings Description</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="action_refresh_desc">Refresh the movie list</string>
     <string name="action_sort_popular">Sort by Popular</string>
     <string name="action_sort_popular_desc">if select this option movies are sorted by popularity</string>
-    <string name="action_sort_top_movies">Sort by Top</string>
+    <string name="action_sort_top_movies">Sort by Top Rated</string>
     <string name="action_sort_top_movies_desc">if select this option movies are sorted by votes</string>
     <string name="showcase_title">Here are movies</string>
     <string name="thumbnail_content_desc">Movie cover image</string>

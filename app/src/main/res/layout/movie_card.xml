@@ -10,7 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_margin="@dimen/card_margin"
+        android:layout_marginTop="@dimen/card_margin_vertical"
+        android:layout_marginBottom="@dimen/card_margin_vertical"
+        android:layout_marginLeft="@dimen/card_margin_horizontal"
+        android:layout_marginRight="@dimen/card_margin_horizontal"
         card_view:cardCornerRadius="@dimen/card_album_radius">
 
         <RelativeLayout
@@ -23,18 +26,19 @@
                 android:layout_height="@dimen/movie_cover_height"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/thumbnail_content_desc"
-                android:clickable="true"
                 android:scaleType="fitXY"
                 android:focusable="true" />
 
             <TextView
                 android:id="@+id/movie_title"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/movie_title_height"
+                android:background="@color/movie_title_background"
                 android:layout_below="@id/movie_thumbnail"
                 android:padding="@dimen/movie_title_padding"
                 android:textColor="@color/movie_title"
                 android:textSize="@dimen/movie_title"
+                android:gravity="center_vertical"
                 tools:text="Movie Title" />
 
         </RelativeLayout>

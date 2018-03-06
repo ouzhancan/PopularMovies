@@ -5,19 +5,32 @@
     <item android:id="@+id/menu_settings"
         android:title="@string/action_settings"
         android:contentDescription="@string/action_settings_desc"
+        android:icon="@drawable/ic_settings"
         android:visible="true"
+        android:orderInCategory="1"
         app:showAsAction="always">
     </item>
-
-    <group android:id="@+id/group">
-        <item android:id="@+id/group_item1"
-            android:onClick="onGroupItemClick"
-            android:title="Sirala"
-            android:icon="@android:drawable/ic_menu_sort_alphabetically" />
-        <item android:id="@+id/group_item2"
-            android:onClick="onGroupItemClick"
-            android:title="Paspdkaşds"
-            android:icon="@android:drawable/ic_menu_sort_by_size" />
-    </group>
+    <item android:id="@+id/menu_refresh"
+        android:title="@string/action_refresh"
+        android:contentDescription="@string/action_refresh_desc"
+        android:icon="@drawable/ic_refresh"
+        android:visible="true"
+        android:orderInCategory="2"
+        app:showAsAction="always">
+    </item>
+    <item android:id="@+id/menu_sort_popular"
+        android:title="@string/action_sort_popular"
+        android:contentDescription="@string/action_sort_popular_desc"
+        android:icon="@android:drawable/ic_menu_sort_by_size"
+        android:visible="true"
+        android:orderInCategory="3"
+        app:showAsAction="withText"/>
+    <item android:id="@+id/menu_sort_top"
+        android:title="@string/action_sort_top_movies"
+        android:contentDescription="@string/action_sort_top_movies_desc"
+        android:visible="true"
+        android:orderInCategory="3"
+        app:showAsAction="withText"
+        android:icon="@android:drawable/star_on" />
 
 </menu>

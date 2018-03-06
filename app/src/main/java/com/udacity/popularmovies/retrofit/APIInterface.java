@@ -17,7 +17,6 @@ import retrofit2.http.Query;
 
 public interface APIInterface {
 
-
     /* API GET MOVIES request path variations */
     @GET(NetworkUtil.POPULAR_MOVIE_PATH)
     Call<MovieContainer> getPopularMovies(@Query("api_key")String api_key);

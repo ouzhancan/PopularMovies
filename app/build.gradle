@@ -25,7 +25,7 @@ android {
     // https://technobells.com/best-way-to-store-your-api-keys-for-your-android-studio-project-e4b5e8bb7d23
     // store api key in gradle.properties helper link is above.
     buildTypes.each {
-        it.buildConfigField 'String' , 'MOVIE_DB_API_KEY' , api_key
+        it.buildConfigField 'String', 'MOVIE_DB_API_KEY', api_key
     }
 
     repositories {
@@ -36,6 +36,8 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:26.1.0'
+    compile 'com.android.support:appcompat-v7:26.1.0'
+    compile 'com.android.support:design:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
@@ -43,6 +45,6 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
-    compile 'com.android.support:cardview-v7:26+'
+    compile 'com.android.support:cardview-v7:26.1+'
     implementation 'com.android.support:recyclerview-v7:26+'
 }

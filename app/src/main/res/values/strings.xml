@@ -14,4 +14,33 @@
     <string name="action_sort_top_movies_desc">if select this option movies are sorted by votes</string>
     <string name="showcase_title">Here are movies</string>
     <string name="thumbnail_content_desc">Movie cover image</string>
+
+    <string name="backdrop_content_desc">Movie backdrop image</string>
+
+    <!-- detail strings -->
+    <string name="detail_title_tools">Movie Title will be here</string>
+    <string name="detail_title">Title</string>
+
+    <string name="detail_genres_tools">Genres will be here</string>
+    <string name="detail_genres">Genres</string>
+
+    <string name="detail_overview_tools">Overview will be here</string>
+    <string name="detail_overview">Overview</string>
+
+    <string name="detail_release_date_tools">Release Date will be here</string>
+    <string name="detail_release_date">Release Date</string>
+
+    <string name="detail_status_tools">Status will be here</string>
+    <string name="detail_status">Status</string>
+
+    <string name="detail_homepage_tools">Homepage will be here</string>
+    <string name="detail_homepage">Website</string>
+
+    <string name="detail_imdb_id_tools">IMDB ID will be here</string>
+    <string name="detail_imdb_id">Imdb Id</string>
+
+    <string name="detail_vote_count_tools">Vote Count will be here</string>
+    <string name="detail_vote_count">Vote Count</string>
+
+
 </resources>

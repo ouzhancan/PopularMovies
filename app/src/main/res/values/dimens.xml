@@ -5,12 +5,6 @@
 
     <dimen name="item_offset">10dp</dimen>
 
-    <dimen name="detail_backdrop_height">250dp</dimen>
-
-    <dimen name="backdrop_title">30sp</dimen>
-
-    <dimen name="backdrop_subtitle">18dp</dimen>
-
     <dimen name="card_margin_vertical">10dp</dimen>
     <dimen name="card_margin_horizontal">12dp</dimen>
     <dimen name="card_album_radius">3dp</dimen>
@@ -28,6 +22,30 @@
 
     <dimen name="progress_bar_width">64dp</dimen>
     <dimen name="progress_bar_height">64dp</dimen>
+
+
+    <!-- movie detail layout dimens -->
+    <dimen name="detail_backdrop_height">200dp</dimen>
+    <dimen name="detail_poster_height">170dp</dimen>
+    <dimen name="detail_poster_width">120dp</dimen>
+
+    <dimen name="detail_views_default_margin">6dp</dimen>
+    <dimen name="detail_views_little_margin">4dp</dimen>
+
+    <dimen name="detail_views_little_padding">2dp</dimen>
+
+    <dimen name="detail_frame_padding">4dp</dimen>
+
+    <dimen name="backdrop_title">30sp</dimen>
+    <dimen name="backdrop_subtitle">18dp</dimen>
+
+    <dimen name="progress_bar_translationZ">5dp</dimen>
+
+    <dimen name="movie_detail_title_size">16sp</dimen>
+    <dimen name="movie_detail_text_size">14sp</dimen>
+    <dimen name="movie_detail_desc_text_size">12sp</dimen>
+
+    <!-- movie detail layout dimens -->
 
 
 </resources>

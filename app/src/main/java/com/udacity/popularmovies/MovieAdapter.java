@@ -2,6 +2,7 @@ package com.udacity.popularmovies;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.udacity.popularmovies.model.Genre;
+import com.udacity.popularmovies.model.GenreContainer;
 import com.udacity.popularmovies.model.Movie;
 import com.udacity.popularmovies.model.MovieContainer;
 import com.udacity.popularmovies.utilities.NetworkUtil;
@@ -84,8 +87,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
             movie_poster = view.findViewById(R.id.movie_thumbnail);
             movie_title = view.findViewById(R.id.movie_title);
 
-            //movie_poster.setOnClickListener(this);
-
             view.setOnClickListener(this);
         }
 
@@ -98,10 +99,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
         public void onClick(View v) {
 
             Movie selectedMovie = movieList.get(getAdapterPosition());
-            Log.d("CLICK_POSTER", " THUMBNAIL POSTER has CLICKED !\nHere is the ID : " + selectedMovie.getTitle());
+            Log.d("CLICK_POSTER", " THUMBNAIL POSTER has CLICKED !\nHere is the title : " + selectedMovie.getTitle());
 
             Intent intent = new Intent(context,DetailActivity.class);
             intent.putExtra("movie_id",selectedMovie.getId());
+            intent.putExtra("genres",genresToString(selectedMovie.getGenre_ids()));
             context.startActivity(intent);
         }
     }
@@ -114,5 +116,20 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
         }
 
         notifyDataSetChanged();
+    }
+
+    @NonNull
+    private String genresToString(List<String> genreList){
+
+        StringBuilder builder = new StringBuilder();
+
+        for(String element : genreList){
+            Genre genre = GenreContainer.findGenre(element);
+            if(genre != null ){
+                builder.append(genre.getName()+" " );
+            }
+        }
+
+        return builder.toString();
     }
 }

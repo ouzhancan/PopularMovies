@@ -1,11 +1,6 @@
 package com.udacity.popularmovies.retrofit;
 
-/**
- * Created by ouz on 24/02/18.
- */
 
-
-import com.udacity.popularmovies.model.ImageContainer;
 import com.udacity.popularmovies.model.Movie;
 import com.udacity.popularmovies.model.MovieContainer;
 import com.udacity.popularmovies.utilities.NetworkUtil;
@@ -29,9 +24,8 @@ public interface APIInterface {
     /* *** *** *** */
 
     /* API GET IMAGE request path variations */
-    @GET("{movie_id}/"+NetworkUtil.MOVIE_IMAGE_PATH)
-    Call<ImageContainer> getImagesByMovieId(@Query("api_key")String api_key);
-
+    // @GET("{movie_id}/"+NetworkUtil.MOVIE_IMAGE_PATH)
+    // Call<ImageContainer> getImagesByMovieId(@Query("api_key")String api_key);
     /* *** *** *** */
 
 }

@@ -5,9 +5,8 @@ import java.util.List;
 
 public class Movie {
 
-    String vote_count;
     String id;
-    Boolean video;
+    String vote_count;
     Double vote_average;
     String title;
     Double popularity;
@@ -19,7 +18,71 @@ public class Movie {
     Boolean adult;
     String overview;
     Date release_date;
+    Boolean video;
+    //String belongs_to_collection;
+    Double budget;
+    String homepage;
+    String imdb_id;
+    Double revenue;
+    Double runtime;
+    String status;
+    String tagline;
 
+    public Double getBudget() {
+        return budget;
+    }
+
+    public void setBudget(Double budget) {
+        this.budget = budget;
+    }
+
+    public String getHomepage() {
+        return homepage;
+    }
+
+    public void setHomepage(String homepage) {
+        this.homepage = homepage;
+    }
+
+    public String getImdb_id() {
+        return imdb_id;
+    }
+
+    public void setImdb_id(String imdb_id) {
+        this.imdb_id = imdb_id;
+    }
+
+    public Double getRevenue() {
+        return revenue;
+    }
+
+    public void setRevenue(Double revenue) {
+        this.revenue = revenue;
+    }
+
+    public Double getRuntime() {
+        return runtime;
+    }
+
+    public void setRuntime(Double runtime) {
+        this.runtime = runtime;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getTagline() {
+        return tagline;
+    }
+
+    public void setTagline(String tagline) {
+        this.tagline = tagline;
+    }
 
     public Movie(String vote_count, String id, Boolean video, Double vote_average, String title, Double popularity, String poster_path, String original_language, String original_title, List<String> genre_ids, String backdrop_path, Boolean adult, String overview, Date release_date) {
         this.vote_count = vote_count;

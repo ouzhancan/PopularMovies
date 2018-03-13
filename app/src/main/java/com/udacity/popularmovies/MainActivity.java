@@ -185,7 +185,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
      *
      * @return
      */
-    public boolean isThereAConnection() {
+    private boolean isThereAConnection() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
         return netInfo != null && netInfo.isConnectedOrConnecting();

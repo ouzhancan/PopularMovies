@@ -1,6 +1,12 @@
 package com.udacity.popularmovies.retrofit;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.TypeAdapter;
 import com.udacity.popularmovies.utilities.NetworkUtil;
+
+import java.text.DateFormat;
+import java.util.Date;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -29,9 +35,29 @@ public class APIClient {
         }
 
         if(client!=null){
+
+            // Create a first instance a Gson
+            Gson gson = new GsonBuilder()
+                    .setDateFormat("yyyy-MM-dd")
+                    .create();
+
+            // Get the date adapter
+            TypeAdapter<Date> dateTypeAdapter = gson.getAdapter(Date.class);
+
+            // Ensure the DateTypeAdapter is null safe
+            TypeAdapter<Date> safeDateTypeAdapter = dateTypeAdapter.nullSafe();
+
+
+            gson = new GsonBuilder()
+                    .setDateFormat("yyyy-MM-dd")
+                    .registerTypeAdapter(Date.class, safeDateTypeAdapter)
+                    .create();
+
+            GsonConverterFactory factory = GsonConverterFactory.create(gson);
+
             retrofit = new Retrofit.Builder()
                     .baseUrl(NetworkUtil.BASE_MOVIE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
+                    .addConverterFactory(factory)
                     .client(client.build())
                     .build();
         }

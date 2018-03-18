@@ -1,5 +1,7 @@
 package com.udacity.popularmovies.model;
 
+import android.support.annotation.Nullable;
+
 import java.util.Date;
 import java.util.List;
 

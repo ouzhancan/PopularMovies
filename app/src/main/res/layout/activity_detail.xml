@@ -77,6 +77,38 @@
             tools:text="@string/detail_title_tools" />
 
 
+        <!-- Tagline -->
+        <TextView
+            android:id="@+id/tv_detail_tagline_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/movie_detail_desc_text_size"
+            android:layout_marginLeft="@dimen/detail_views_little_margin"
+            android:layout_marginStart="@dimen/detail_views_little_margin"
+            android:layout_marginTop="@dimen/detail_views_little_margin"
+            android:padding="@dimen/detail_views_little_padding"
+            android:gravity="left"
+            app:layout_constraintTop_toBottomOf="@id/tv_detail_title"
+            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+            app:layout_constraintLeft_toRightOf="@+id/iv_detail_poster"
+            app:layout_constraintStart_toEndOf="@+id/iv_detail_poster"
+            android:text="@string/detail_tagline"
+            />
+
+        <TextView
+            android:id="@+id/tv_detail_tagline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/movie_detail_text_size"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_tagline_desc"
+            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+            app:layout_constraintStart_toStartOf="@+id/tv_detail_tagline_desc"
+            app:layout_constraintLeft_toLeftOf="@id/tv_detail_tagline_desc"
+            tools:text="@string/detail_tagline_tools" />
+
         <!-- Genres -->
         <TextView
             android:id="@+id/tv_detail_genres_desc"
@@ -88,7 +120,7 @@
             android:layout_marginTop="@dimen/detail_views_little_margin"
             android:padding="@dimen/detail_views_little_padding"
             android:gravity="left"
-            app:layout_constraintTop_toBottomOf="@id/tv_detail_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_detail_tagline"
             app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
             app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
             app:layout_constraintLeft_toRightOf="@+id/iv_detail_poster"
@@ -108,6 +140,168 @@
             app:layout_constraintStart_toStartOf="@+id/tv_detail_genres_desc"
             app:layout_constraintLeft_toLeftOf="@id/tv_detail_genres_desc"
             tools:text="@string/detail_genres_tools" />
+
+        <!-- Vote Average / Vote Count  -->
+        <TextView
+            android:id="@+id/tv_detail_vote_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/movie_detail_desc_text_size"
+            android:layout_marginLeft="@dimen/detail_views_little_margin"
+            android:layout_marginStart="@dimen/detail_views_little_margin"
+            android:layout_marginTop="@dimen/detail_views_little_margin"
+            android:padding="@dimen/detail_views_little_padding"
+            android:gravity="left"
+            app:layout_constraintTop_toBottomOf="@id/tv_detail_genres"
+            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+            app:layout_constraintLeft_toRightOf="@+id/iv_detail_poster"
+            app:layout_constraintStart_toEndOf="@+id/iv_detail_poster"
+            android:text="@string/detail_vote"
+            />
+
+        <TextView
+            android:id="@+id/tv_detail_vote"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/movie_detail_text_size"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_vote_desc"
+            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+            app:layout_constraintStart_toStartOf="@+id/tv_detail_vote_desc"
+            app:layout_constraintLeft_toLeftOf="@id/tv_detail_vote_desc"
+            tools:text="@string/detail_vote_tools" />
+
+        <!-- Release Date -->
+        <TextView
+            android:id="@+id/tv_detail_release_date_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/movie_detail_desc_text_size"
+            android:layout_marginLeft="@dimen/detail_views_little_margin"
+            android:layout_marginStart="@dimen/detail_views_little_margin"
+            android:layout_marginTop="@dimen/detail_views_little_margin"
+            android:padding="@dimen/detail_views_little_padding"
+            android:gravity="left"
+            app:layout_constraintTop_toBottomOf="@id/iv_detail_poster"
+            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+            app:layout_constraintLeft_toLeftOf="@+id/iv_detail_poster"
+            app:layout_constraintStart_toStartOf="@+id/iv_detail_poster"
+            android:text="@string/detail_release_date"
+            />
+
+        <TextView
+            android:id="@+id/tv_detail_release_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/movie_detail_text_size"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_release_date_desc"
+            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+            app:layout_constraintStart_toStartOf="@+id/tv_detail_release_date_desc"
+            app:layout_constraintLeft_toLeftOf="@id/tv_detail_release_date_desc"
+            tools:text="@string/detail_release_date_tools" />
+
+        <!-- Homepage -->
+        <TextView
+            android:id="@+id/tv_detail_homepage_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/movie_detail_desc_text_size"
+            android:layout_marginLeft="@dimen/detail_views_little_margin"
+            android:layout_marginStart="@dimen/detail_views_little_margin"
+            android:layout_marginTop="@dimen/detail_views_little_margin"
+            android:padding="@dimen/detail_views_little_padding"
+            android:gravity="left"
+            app:layout_constraintTop_toBottomOf="@id/tv_detail_release_date"
+            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+            app:layout_constraintLeft_toLeftOf="@+id/iv_detail_poster"
+            app:layout_constraintStart_toStartOf="@+id/iv_detail_poster"
+            android:text="@string/detail_homepage"
+            />
+
+        <TextView
+            android:id="@+id/tv_detail_homepage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/movie_detail_text_size"
+            android:textStyle="bold"
+            android:autoLink="web"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_homepage_desc"
+            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+            app:layout_constraintStart_toStartOf="@+id/tv_detail_homepage_desc"
+            app:layout_constraintLeft_toLeftOf="@id/tv_detail_homepage_desc"
+            tools:text="@string/detail_homepage_tools" />
+
+        <!-- IMDB -->
+        <TextView
+            android:id="@+id/tv_detail_imdb_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/movie_detail_desc_text_size"
+            android:layout_marginLeft="@dimen/detail_views_little_margin"
+            android:layout_marginStart="@dimen/detail_views_little_margin"
+            android:layout_marginTop="@dimen/detail_views_little_margin"
+            android:padding="@dimen/detail_views_little_padding"
+            android:gravity="left"
+            app:layout_constraintTop_toBottomOf="@id/tv_detail_homepage"
+            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+            app:layout_constraintLeft_toLeftOf="@+id/iv_detail_poster"
+            app:layout_constraintStart_toStartOf="@+id/iv_detail_poster"
+            android:text="@string/detail_imdb_id"
+            />
+
+        <TextView
+            android:id="@+id/tv_detail_imdb"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/movie_detail_text_size"
+            android:textStyle="bold"
+            android:autoLink="web"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_imdb_desc"
+            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+            app:layout_constraintStart_toStartOf="@+id/tv_detail_imdb_desc"
+            app:layout_constraintLeft_toLeftOf="@id/tv_detail_imdb_desc"
+            tools:text="@string/detail_imdb_id_tools" />
+
+        <!-- Overview -->
+        <TextView
+            android:id="@+id/tv_detail_overview_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/movie_detail_desc_text_size"
+            android:layout_marginLeft="@dimen/detail_views_little_margin"
+            android:layout_marginStart="@dimen/detail_views_little_margin"
+            android:layout_marginTop="@dimen/detail_views_little_margin"
+            android:padding="@dimen/detail_views_little_padding"
+            android:gravity="left"
+            app:layout_constraintTop_toBottomOf="@id/tv_detail_imdb"
+            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+            app:layout_constraintLeft_toLeftOf="@+id/iv_detail_poster"
+            app:layout_constraintStart_toStartOf="@+id/iv_detail_poster"
+            android:text="@string/detail_overview"
+            />
+
+        <TextView
+            android:id="@+id/tv_detail_overview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/movie_detail_text_size"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_overview_desc"
+            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+            app:layout_constraintStart_toStartOf="@+id/tv_detail_overview_desc"
+            app:layout_constraintLeft_toLeftOf="@id/tv_detail_overview_desc"
+            tools:text="@string/detail_overview_tools" />
 
 
     </android.support.constraint.ConstraintLayout>

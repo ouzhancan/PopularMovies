@@ -18,6 +18,7 @@ import com.udacity.popularmovies.model.Movie;
 import com.udacity.popularmovies.model.MovieContainer;
 import com.udacity.popularmovies.utilities.NetworkUtil;
 
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -29,17 +30,32 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
     Context context;
     MovieContainer movieContainer;
     List<Movie> movieList;
+    Boolean isLandscapeMode;
 
+    /*
     public MovieAdapter(Context mContext, List<Movie> movies) {
         this.context = mContext;
         this.movieList = movies;
+    }
+    */
+
+    public MovieAdapter(Context mContext, List<Movie> movies,Boolean orientationMode) {
+        this.context = mContext;
+        this.movieList = movies;
+        this.isLandscapeMode = orientationMode;
     }
 
     @Override
     public MovieAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.movie_card, parent, false);
+        View view;
+
+        if(isLandscapeMode){
+            view = inflater.inflate(R.layout.movie_card_land, parent, false);
+        }else {
+            view = inflater.inflate(R.layout.movie_card, parent, false);
+        }
 
         MovieAdapterViewHolder viewHolder = new MovieAdapterViewHolder(view);
 
@@ -51,12 +67,33 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
 
         final Movie movie = movieList.get(position);
 
-        holder.movie_title.setText(movie.getTitle());
 
-        Picasso.with(context)
-                .load(NetworkUtil.buildImageUrl(movie.getPoster_path()).toString())
-                .into(holder.movie_poster);
+
+        if(isLandscapeMode){
+            holder.movie_land_title.setText(movie.getTitle());
+            holder.movie_land_tagline.setText(movie.getTagline());
+            holder.movie_land_genres.setText(genresToString(movie.getGenre_ids()));
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(movie.getRelease_date());
+            holder.movie_land_release_date.setText(String.valueOf(calendar.get(Calendar.DATE))+" / "
+                    + String.valueOf(calendar.get(Calendar.MONTH))+" / "
+                    + String.valueOf(calendar.get(Calendar.YEAR)));
+
+            Picasso.with(context)
+                    .load(NetworkUtil.buildImageUrl(movie.getPoster_path()).toString())
+                    .into(holder.movie_land_poster);
+        }else{
+            holder.movie_title.setText(movie.getTitle());
+
+            Picasso.with(context)
+                    .load(NetworkUtil.buildImageUrl(movie.getPoster_path()).toString())
+                    .into(holder.movie_poster);
+        }
+
     }
+
+
 
     @Override
     public int getItemCount() {
@@ -78,14 +115,23 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
 
     public class MovieAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        ImageView movie_poster;
-        TextView movie_title;
+        ImageView movie_poster,movie_land_poster;
+        TextView movie_title,movie_land_release_date,movie_land_genres,movie_land_tagline,movie_land_title;
 
         public MovieAdapterViewHolder(View view) {
             super(view);
 
-            movie_poster = view.findViewById(R.id.movie_thumbnail);
-            movie_title = view.findViewById(R.id.movie_title);
+            if(isLandscapeMode){
+                movie_land_poster = view.findViewById(R.id.movie_land_thumbnail);
+                movie_land_title = view.findViewById(R.id.tv_main_land_title);
+                movie_land_tagline = view.findViewById(R.id.tv_main_land_tagline);
+                movie_land_genres = view.findViewById(R.id.tv_main_land_genre);
+                movie_land_release_date = view.findViewById(R.id.tv_main_land_release_date);
+
+            }else {
+                movie_poster = view.findViewById(R.id.movie_thumbnail);
+                movie_title = view.findViewById(R.id.movie_title);
+            }
 
             view.setOnClickListener(this);
         }

@@ -20,6 +20,9 @@ import com.squareup.picasso.Picasso;
 import com.udacity.popularmovies.model.Movie;
 import com.udacity.popularmovies.utilities.NetworkUtil;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class DetailActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Movie> {
 
 
@@ -33,7 +36,7 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
     ConstraintLayout mConstraintContainer;
     ProgressBar mProgressBar;
     ImageView mBackdropView, mPosterView;
-    TextView mTitleView,mGenresView,mOverviewView,mReleaseDateView;
+    TextView mTitleView,mGenresView,mTaglineView,mVoteAverageView,mOverviewView,mReleaseDateView,mHomePageView,mImdbLinkView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,8 +89,12 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
         mPosterView = findViewById(R.id.iv_detail_poster);
         mTitleView = findViewById(R.id.tv_detail_title);
         mGenresView = findViewById(R.id.tv_detail_genres);
-        // mTitleView = findViewById(R.id.tv_detail_over);
-        // mTitleView = findViewById(R.id.tv_detail_title);
+        mTaglineView = findViewById(R.id.tv_detail_tagline);
+        mVoteAverageView = findViewById(R.id.tv_detail_vote);
+        mReleaseDateView = findViewById(R.id.tv_detail_release_date);
+        mHomePageView = findViewById(R.id.tv_detail_homepage);
+        mImdbLinkView = findViewById(R.id.tv_detail_imdb);
+        mOverviewView = findViewById(R.id.tv_detail_overview);
     }
 
     @Override
@@ -182,8 +189,15 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
                     .into(mPosterView);
 
             mTitleView.setText(movie.getTitle());
+            mTaglineView.setText(movie.getTagline()!=null?movie.getTagline():" -_-_- ");
             mGenresView.setText(genres!=null?genres: " -_-_- ");
-
+            mVoteAverageView.setText(movie.getVote_average().toString()+"  /  10 "+"    -    "+movie.getVote_count());
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(movie.getRelease_date());
+            mReleaseDateView.setText(String.valueOf(calendar.get(Calendar.DATE))+" / "+String.valueOf(calendar.get(Calendar.MONTH))+" / "+String.valueOf(calendar.get(Calendar.YEAR)));
+            mHomePageView.setText(movie.getHomepage());
+            mImdbLinkView.setText(NetworkUtil.BASE_IMDB_MOVIE_URL + movie.getImdb_id());
+            mOverviewView.setText(movie.getOverview());
         }
     }
 

@@ -18,11 +18,18 @@
     <string name="backdrop_content_desc">Movie backdrop image</string>
 
     <!-- detail strings -->
+
     <string name="detail_title_tools">Movie Title will be here</string>
     <string name="detail_title">Title</string>
 
+    <string name="detail_tagline_tools">Tagline will be here</string>
+    <string name="detail_tagline">Tagline</string>
+
     <string name="detail_genres_tools">Genres will be here</string>
     <string name="detail_genres">Genres</string>
+
+    <string name="detail_vote_tools">Vote Average will be here</string>
+    <string name="detail_vote">Vote Average     -     Vote Count</string>
 
     <string name="detail_overview_tools">Overview will be here</string>
     <string name="detail_overview">Overview</string>
@@ -36,11 +43,9 @@
     <string name="detail_homepage_tools">Homepage will be here</string>
     <string name="detail_homepage">Website</string>
 
-    <string name="detail_imdb_id_tools">IMDB ID will be here</string>
-    <string name="detail_imdb_id">Imdb Id</string>
+    <string name="detail_imdb_id_tools">IMDB Link will be here</string>
+    <string name="detail_imdb_id">Imdb Link</string>
 
-    <string name="detail_vote_count_tools">Vote Count will be here</string>
-    <string name="detail_vote_count">Vote Count</string>
-
+    <!-- detail strings -->
 
 </resources>

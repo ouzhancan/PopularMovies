@@ -25,7 +25,7 @@ public class NetworkUtil {
 
     public static final String BASE_MOVIE_URL = "https://api.themoviedb.org/3/movie/";
     public static final String BASE_IMAGE_URL = "http://image.tmdb.org/t/p/";
-    private static final String BASE_IMDB_MOVIE_URL  = "http://www.imdb.com/title/";
+    public static final String BASE_IMDB_MOVIE_URL  = "http://www.imdb.com/title/";
 
     public static final String POPULAR_MOVIE_PATH = "popular";
     public static final String TOP_RATED_MOVIE_PATH = "top_rated";
@@ -71,7 +71,7 @@ public class NetworkUtil {
      * @param option : the url suffix (popular/  or top_rated/ )
      * @return
      */
-    public static MovieContainer getMoviesWithAPI(String option) {
+    public static MovieContainer getMoviesWithAPI(String option,String page) {
 
         // *** **** Retrofit service **** *** //
         apiService = APIClient.getClient().create(APIInterface.class);
@@ -80,10 +80,10 @@ public class NetworkUtil {
 
         if (option != null && option.equalsIgnoreCase(TOP_RATED_MOVIE_PATH)) {
             // if the option was selected
-            movieContainerCall = apiService.getTopRatedMovies(BuildConfig.MOVIE_DB_API_KEY);
+            movieContainerCall = apiService.getTopRatedMovies(BuildConfig.MOVIE_DB_API_KEY,page);
         } else {
             // default option
-            movieContainerCall = apiService.getPopularMovies(BuildConfig.MOVIE_DB_API_KEY);
+            movieContainerCall = apiService.getPopularMovies(BuildConfig.MOVIE_DB_API_KEY,page);
         }
 
         if (movieContainerCall != null) {

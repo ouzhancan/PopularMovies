@@ -14,10 +14,10 @@ public interface APIInterface {
 
     /* API GET MOVIES request path variations */
     @GET(NetworkUtil.POPULAR_MOVIE_PATH)
-    Call<MovieContainer> getPopularMovies(@Query("api_key")String api_key);
+    Call<MovieContainer> getPopularMovies(@Query("api_key")String api_key,@Query("page")String page);
 
     @GET(NetworkUtil.TOP_RATED_MOVIE_PATH)
-    Call<MovieContainer> getTopRatedMovies(@Query("api_key")String api_key);
+    Call<MovieContainer> getTopRatedMovies(@Query("api_key")String api_key,@Query("page")String page);
 
     @GET("{movie_id}")
     Call<Movie> getMovieById(@Path("movie_id") String movie_id, @Query("api_key")String api_key);

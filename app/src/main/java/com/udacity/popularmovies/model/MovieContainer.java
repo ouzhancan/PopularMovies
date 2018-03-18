@@ -5,7 +5,6 @@ import java.util.List;
 public class MovieContainer {
 
     int page;
-    int total_results;
     int total_pages;
     List<Movie> results;
 
@@ -15,14 +14,6 @@ public class MovieContainer {
 
     public void setPage(int page) {
         this.page = page;
-    }
-
-    public int getTotal_results() {
-        return total_results;
-    }
-
-    public void setTotal_results(int total_results) {
-        this.total_results = total_results;
     }
 
     public int getTotal_pages() {

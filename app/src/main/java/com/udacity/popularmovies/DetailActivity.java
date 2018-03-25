@@ -36,7 +36,8 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
     ConstraintLayout mConstraintContainer;
     ProgressBar mProgressBar;
     ImageView mBackdropView, mPosterView;
-    TextView mTitleView,mGenresView,mTaglineView,mVoteAverageView,mOverviewView,mReleaseDateView,mHomePageView,mImdbLinkView;
+    TextView mTitleView,mGenresView,mTaglineView,mVoteAverageView;
+    TextView mOverviewView,mReleaseDateView,mHomePageView,mImdbLinkView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -181,20 +182,39 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
             mConstraintContainer.setVisibility(View.VISIBLE);
 
             Picasso.with(this)
-                    .load(NetworkUtil.BASE_IMAGE_URL + NetworkUtil.IMAGE_BACKDROP_SIZE + movie.getBackdrop_path())
+                    .load(NetworkUtil.BASE_IMAGE_URL
+                            + NetworkUtil.IMAGE_BACKDROP_SIZE
+                            + movie.getBackdrop_path())
                     .into(mBackdropView);
 
             Picasso.with(this)
-                    .load(NetworkUtil.BASE_IMAGE_URL + NetworkUtil.IMAGE_SIZE + movie.getPoster_path())
+                    .load(NetworkUtil.BASE_IMAGE_URL
+                            + NetworkUtil.IMAGE_SIZE
+                            + movie.getPoster_path())
                     .into(mPosterView);
 
             mTitleView.setText(movie.getTitle());
             mTaglineView.setText(movie.getTagline()!=null?movie.getTagline():" -_-_- ");
             mGenresView.setText(genres!=null?genres: " -_-_- ");
-            mVoteAverageView.setText(movie.getVote_average().toString()+"  /  10 "+"    -    "+movie.getVote_count());
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(movie.getRelease_date());
-            mReleaseDateView.setText(String.valueOf(calendar.get(Calendar.DATE))+" / "+String.valueOf(calendar.get(Calendar.MONTH))+" / "+String.valueOf(calendar.get(Calendar.YEAR)));
+            mVoteAverageView.setText(movie.getVote_average().toString()+"  /  10 "+"    -    "
+                                    +movie.getVote_count());
+
+            if(movie.getRelease_date() != "" && movie.getRelease_date().length() > 0
+                    && !movie.getRelease_date().isEmpty()){
+
+                String[] datePartitions = movie.getRelease_date().split("-");
+
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(Calendar.YEAR,Integer.valueOf(datePartitions[0]));
+                calendar.set(Calendar.MONTH,Integer.valueOf(datePartitions[1]));
+                calendar.set(Calendar.DATE,Integer.valueOf(datePartitions[2]));
+
+                mReleaseDateView.setText(String.valueOf(calendar.get(Calendar.DATE))+" / "
+                                        +String.valueOf(calendar.get(Calendar.MONTH))+" / "
+                                        +String.valueOf(calendar.get(Calendar.YEAR)));
+
+
+            }
             mHomePageView.setText(movie.getHomepage());
             mImdbLinkView.setText(NetworkUtil.BASE_IMDB_MOVIE_URL + movie.getImdb_id());
             mOverviewView.setText(movie.getOverview());

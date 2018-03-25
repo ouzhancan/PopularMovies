@@ -50,13 +50,23 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     int currentPage = 1;
     int totalPage=0;
 
+    private static final String SCREEN_MODE_KEY  = "SCREEN_MODE";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if (savedInstanceState != null) {
+            isLandscapeMode = savedInstanceState.getBoolean(SCREEN_MODE_KEY);
+        }
+
         getSupportActionBar().setTitle(getString(R.string.app_name));
         getSupportActionBar().setLogo(R.drawable.ic_logo_primary_green);
+
+        // get device current orientation
+        isLandscapeMode = (getResources().getConfiguration().orientation
+                            == Configuration.ORIENTATION_LANDSCAPE ? true : false);
 
         // getting xml elements into to android view objects. //
         getViewObjects();
@@ -190,6 +200,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     public void onLoadFinished(Loader<MovieContainer> loader, MovieContainer data) {
         if (data != null) {
             showDataOnView();
+            movies = data.getResults();
             currentPage = data.getPage();
             totalPage = data.getTotal_pages();
             mPageCountTextView.setText("Current Page : "+data.getPage()
@@ -210,6 +221,15 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         super.onConfigurationChanged(newConfig);
         //Update the Flag here
         isLandscapeMode = (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE ? true : false);
+        mMovieAdapter = new MovieAdapter(this, movies,isLandscapeMode);
+        mRecyclerView.setAdapter(mMovieAdapter);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+
+        outState.putBoolean(SCREEN_MODE_KEY,isLandscapeMode);
+        super.onSaveInstanceState(outState);
     }
 
     /**
@@ -225,7 +245,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             case R.id.iv_last_page:
                 // if release date is null, retrofit is thrown an parse exception
                 // I couldn't find a solution :)
-                currentPage = totalPage-90;
+                currentPage = totalPage-1;
                 break;
             case R.id.iv_previous_page:
                 if(currentPage > 1 ) {

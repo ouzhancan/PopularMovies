@@ -19,6 +19,7 @@ import com.udacity.popularmovies.model.MovieContainer;
 import com.udacity.popularmovies.utilities.NetworkUtil;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -51,11 +52,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
         LayoutInflater inflater = LayoutInflater.from(context);
         View view;
 
-        if(isLandscapeMode){
-            view = inflater.inflate(R.layout.movie_card_land, parent, false);
-        }else {
-            view = inflater.inflate(R.layout.movie_card, parent, false);
-        }
+        view = inflater.inflate(R.layout.movie_card, parent, false);
 
         MovieAdapterViewHolder viewHolder = new MovieAdapterViewHolder(view);
 
@@ -67,18 +64,27 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
 
         final Movie movie = movieList.get(position);
 
-
-
         if(isLandscapeMode){
             holder.movie_land_title.setText(movie.getTitle());
-            holder.movie_land_tagline.setText(movie.getTagline());
+            holder.movie_land_vote.setText(movie.getVote_average().toString()+" / 10");
             holder.movie_land_genres.setText(genresToString(movie.getGenre_ids()));
 
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(movie.getRelease_date());
-            holder.movie_land_release_date.setText(String.valueOf(calendar.get(Calendar.DATE))+" / "
-                    + String.valueOf(calendar.get(Calendar.MONTH))+" / "
-                    + String.valueOf(calendar.get(Calendar.YEAR)));
+            if(movie.getRelease_date() != "" && movie.getRelease_date().length() > 0
+                    && !movie.getRelease_date().isEmpty()){
+
+                String[] datePartitions = movie.getRelease_date().split("-");
+
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(Calendar.YEAR,Integer.valueOf(datePartitions[0]));
+                calendar.set(Calendar.MONTH,Integer.valueOf(datePartitions[1]));
+                calendar.set(Calendar.DATE,Integer.valueOf(datePartitions[2]));
+
+                holder.movie_land_release_date.setText(String.valueOf(calendar.get(Calendar.DATE))+" / "
+                        + String.valueOf(calendar.get(Calendar.MONTH))+" / "
+                        + String.valueOf(calendar.get(Calendar.YEAR)));
+
+            }
+
 
             Picasso.with(context)
                     .load(NetworkUtil.buildImageUrl(movie.getPoster_path()).toString())
@@ -90,7 +96,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
                     .load(NetworkUtil.buildImageUrl(movie.getPoster_path()).toString())
                     .into(holder.movie_poster);
         }
-
     }
 
 
@@ -116,7 +121,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
     public class MovieAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView movie_poster,movie_land_poster;
-        TextView movie_title,movie_land_release_date,movie_land_genres,movie_land_tagline,movie_land_title;
+        TextView movie_title,movie_land_release_date;
+        TextView movie_land_genres,movie_land_vote,movie_land_title;
 
         public MovieAdapterViewHolder(View view) {
             super(view);
@@ -124,7 +130,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
             if(isLandscapeMode){
                 movie_land_poster = view.findViewById(R.id.movie_land_thumbnail);
                 movie_land_title = view.findViewById(R.id.tv_main_land_title);
-                movie_land_tagline = view.findViewById(R.id.tv_main_land_tagline);
+                movie_land_vote = view.findViewById(R.id.tv_main_land_vote);
                 movie_land_genres = view.findViewById(R.id.tv_main_land_genre);
                 movie_land_release_date = view.findViewById(R.id.tv_main_land_release_date);
 

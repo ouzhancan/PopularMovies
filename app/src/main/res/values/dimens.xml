@@ -24,15 +24,28 @@
     <dimen name="progress_bar_height">64dp</dimen>
 
 
-    <dimen name="main_pagination_height">64dp</dimen>
-    <dimen name="main_page_count_text_height">20dp</dimen>
+    <dimen name="main_pagination_height">54dp</dimen>
+    <dimen name="main_page_count_text_height">18dp</dimen>
     <dimen name="main_pagination_text_size">14sp</dimen>
+    <dimen name="main_pagination_button_height">36dp</dimen>
+    <dimen name="main_pagination_button_width">36dp</dimen>
     <dimen name="pagination_horziontal_margin">8dp</dimen>
 
     <!-- main landscape layout -->
+    <dimen name="movie_cover_land_height">200dp</dimen>
+
+    <dimen name="activity_land_vertical_margin">1dp</dimen>
+    <dimen name="activity_land_horizontal_margin">4dp</dimen>
+
     <dimen name="main_land_desc_width">140dp</dimen>
+    <dimen name="main_land_title_text_height">14dp</dimen>
     <dimen name="main_land_title_text_size">10sp</dimen>
+    <dimen name="main_land_text_height">18dp</dimen>
     <dimen name="main_land_text_size">14sp</dimen>
+
+    <dimen name="card_margin_land_vertical">4dp</dimen>
+    <dimen name="card_margin_land_horizontal">4dp</dimen>
+
     <!-- main landscape layout -->
 
 

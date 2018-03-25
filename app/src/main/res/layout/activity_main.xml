@@ -51,6 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="@dimen/main_page_count_text_height"
             android:textSize="@dimen/main_pagination_text_size"
+            android:layout_gravity="center"
             tools:text="Contents page number 111312"/>
         <LinearLayout
             android:layout_width="match_parent"
@@ -59,32 +60,32 @@
             android:orientation="horizontal">
             <ImageButton
                 android:id="@+id/iv_first_page"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="@dimen/main_pagination_button_width"
+                android:layout_height="@dimen/main_pagination_button_height"
                 android:layout_marginLeft="@dimen/pagination_horziontal_margin"
                 android:layout_marginRight="@dimen/pagination_horziontal_margin"
                 android:src="@drawable/ic_first_page"
                 />
             <ImageButton
                 android:id="@+id/iv_previous_page"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="@dimen/main_pagination_button_width"
+                android:layout_height="@dimen/main_pagination_button_height"
                 android:layout_marginLeft="@dimen/pagination_horziontal_margin"
                 android:layout_marginRight="@dimen/pagination_horziontal_margin"
                 android:src="@drawable/ic_navigate_previous"
                 />
             <ImageButton
                 android:id="@+id/iv_next_page"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="@dimen/main_pagination_button_width"
+                android:layout_height="@dimen/main_pagination_button_height"
                 android:layout_marginLeft="@dimen/pagination_horziontal_margin"
                 android:layout_marginRight="@dimen/pagination_horziontal_margin"
                 android:src="@drawable/ic_navigate_next"
                 />
             <ImageButton
                 android:id="@+id/iv_last_page"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="@dimen/main_pagination_button_width"
+                android:layout_height="@dimen/main_pagination_button_height"
                 android:layout_marginLeft="@dimen/pagination_horziontal_margin"
                 android:layout_marginRight="@dimen/pagination_horziontal_margin"
                 android:src="@drawable/ic_last_page"

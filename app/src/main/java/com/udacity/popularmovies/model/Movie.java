@@ -19,7 +19,7 @@ public class Movie {
     String backdrop_path;
     Boolean adult;
     String overview;
-    Date release_date;
+    String release_date;
     Boolean video;
     //String belongs_to_collection;
     Double budget;
@@ -86,7 +86,10 @@ public class Movie {
         this.tagline = tagline;
     }
 
-    public Movie(String vote_count, String id, Boolean video, Double vote_average, String title, Double popularity, String poster_path, String original_language, String original_title, List<String> genre_ids, String backdrop_path, Boolean adult, String overview, Date release_date) {
+    public Movie(String vote_count, String id, Boolean video, Double vote_average, String title,
+                 Double popularity, String poster_path, String original_language,
+                 String original_title, List<String> genre_ids, String backdrop_path,
+                 Boolean adult, String overview, String release_date) {
         this.vote_count = vote_count;
         this.id = id;
         this.video = video;
@@ -207,11 +210,11 @@ public class Movie {
         this.overview = overview;
     }
 
-    public Date getRelease_date() {
+    public String getRelease_date() {
         return release_date;
     }
 
-    public void setRelease_date(Date release_date) {
+    public void setRelease_date(String release_date) {
         this.release_date = release_date;
     }
 }

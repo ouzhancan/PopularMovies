@@ -4,13 +4,16 @@
     <color name="colorPrimaryDark">#b7b7b7</color>
     <color name="colorAccent">#16085e</color>
 
-    <color name="background">#bcc9bca7</color>
-    <color name="background_detail">#aaffe1cc</color>
+    <color name="background2">#bcc9bca7</color>
+    <color name="background">#d23e3e3e</color>
+    <color name="background_detail">#fcf7e4</color>
     <color name="movie_title">#4c4c4c</color>
     <color name="movie_title_background">#dfe1e2</color>
     <color name="backdrop_title">#353434</color>
     <color name="app_title">#f5f3c3</color>
     <color name="land_movie_desc">#737372</color>
     <color name="land_movie_title">#050505</color>
+
+    <color name="add_favorite_color">#22a958</color>
 
 </resources>

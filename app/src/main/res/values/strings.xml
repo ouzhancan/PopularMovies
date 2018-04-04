@@ -46,6 +46,11 @@
     <string name="detail_imdb_id_tools">IMDB Link will be here</string>
     <string name="detail_imdb_id">Imdb Link</string>
 
+    <string name="add_favorite">Add to Favorite</string>
+    <string name="remove_favorite">Remove from Favorite</string>
+
+    <string name="detail_trailer">Trailer(s)</string>
+
     <!-- detail strings -->
 
 </resources>

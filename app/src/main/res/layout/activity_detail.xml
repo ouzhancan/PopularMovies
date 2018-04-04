@@ -173,36 +173,57 @@
             app:layout_constraintLeft_toLeftOf="@id/tv_detail_vote_desc"
             tools:text="@string/detail_vote_tools" />
 
+        <!-- Add / Remove Favorite -->
+        <Button
+            android:id="@+id/btn_add_remove_favorites"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/add_favorite_color"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/movie_detail_text_size"
+            android:text="@string/add_favorite"
+            android:layout_marginLeft="@dimen/detail_views_little_margin"
+            android:layout_marginStart="@dimen/detail_views_little_margin"
+            android:layout_marginTop="@dimen/detail_views_little_margin"
+            android:padding="@dimen/detail_views_padding"
+            app:layout_constraintTop_toBottomOf="@id/iv_detail_poster"
+            app:layout_constraintLeft_toLeftOf="@+id/iv_detail_poster"
+            app:layout_constraintStart_toStartOf="@+id/iv_detail_poster"
+            app:layout_constraintRight_toRightOf="@id/iv_detail_poster"
+            app:layout_constraintEnd_toEndOf="@id/iv_detail_poster"
+            />
+
         <!-- Release Date -->
         <TextView
             android:id="@+id/tv_detail_release_date_desc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/movie_detail_desc_text_size"
             android:layout_marginLeft="@dimen/detail_views_little_margin"
             android:layout_marginStart="@dimen/detail_views_little_margin"
             android:layout_marginTop="@dimen/detail_views_little_margin"
             android:padding="@dimen/detail_views_little_padding"
+            android:text="@string/detail_release_date"
             android:gravity="left"
-            app:layout_constraintTop_toBottomOf="@id/iv_detail_poster"
+            android:textSize="@dimen/movie_detail_desc_text_size"
             app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
             app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
-            app:layout_constraintLeft_toLeftOf="@+id/iv_detail_poster"
-            app:layout_constraintStart_toStartOf="@+id/iv_detail_poster"
-            android:text="@string/detail_release_date"
-            />
+            app:layout_constraintStart_toEndOf="@id/btn_add_remove_favorites"
+            app:layout_constraintLeft_toRightOf="@id/btn_add_remove_favorites"
+            app:layout_constraintTop_toBottomOf="@id/iv_detail_poster" />
 
         <TextView
             android:id="@+id/tv_detail_release_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/detail_views_little_margin"
+            android:layout_marginStart="@dimen/detail_views_little_margin"
             android:textSize="@dimen/movie_detail_text_size"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@+id/tv_detail_release_date_desc"
             app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
             app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
-            app:layout_constraintStart_toStartOf="@+id/tv_detail_release_date_desc"
-            app:layout_constraintLeft_toLeftOf="@id/tv_detail_release_date_desc"
+            app:layout_constraintStart_toEndOf="@id/btn_add_remove_favorites"
+            app:layout_constraintLeft_toRightOf="@id/btn_add_remove_favorites"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_release_date_desc"
             tools:text="@string/detail_release_date_tools" />
 
         <!-- Homepage -->
@@ -216,7 +237,7 @@
             android:layout_marginTop="@dimen/detail_views_little_margin"
             android:padding="@dimen/detail_views_little_padding"
             android:gravity="left"
-            app:layout_constraintTop_toBottomOf="@id/tv_detail_release_date"
+            app:layout_constraintTop_toBottomOf="@id/btn_add_remove_favorites"
             app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
             app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
             app:layout_constraintLeft_toLeftOf="@+id/iv_detail_poster"
@@ -302,6 +323,58 @@
             app:layout_constraintStart_toStartOf="@+id/tv_detail_overview_desc"
             app:layout_constraintLeft_toLeftOf="@id/tv_detail_overview_desc"
             tools:text="@string/detail_overview_tools" />
+
+        <!-- Divider -->
+        <View
+            android:id="@+id/v_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginLeft="@dimen/detail_views_little_margin"
+            android:layout_marginStart="@dimen/detail_views_little_margin"
+            android:layout_marginTop="@dimen/detail_views_little_margin"
+            android:padding="@dimen/detail_views_little_padding"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_overview"
+            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+            app:layout_constraintStart_toStartOf="@+id/tv_detail_overview"
+            app:layout_constraintLeft_toLeftOf="@id/tv_detail_overview"
+            />
+
+
+        <!-- Videos section -->
+
+        <TextView
+            android:id="@+id/tv_detail_trial_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/movie_detail_text_size"
+            android:layout_marginLeft="@dimen/detail_views_little_margin"
+            android:layout_marginStart="@dimen/detail_views_little_margin"
+            android:layout_marginTop="@dimen/detail_views_little_margin"
+            android:padding="@dimen/detail_views_little_padding"
+            android:gravity="left"
+            app:layout_constraintTop_toBottomOf="@id/v_divider"
+            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+            app:layout_constraintLeft_toLeftOf="@+id/iv_detail_poster"
+            app:layout_constraintStart_toStartOf="@+id/iv_detail_poster"
+            android:text="@string/detail_trailer"
+            />
+
+        <include
+            android:id="@+id/inc_trail_videos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/detail_views_little_margin"
+            android:layout_marginStart="@dimen/detail_views_little_margin"
+            android:layout_marginTop="@dimen/detail_views_little_margin"
+            app:layout_constraintTop_toBottomOf="@id/tv_detail_trial_desc"
+            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+            app:layout_constraintLeft_toLeftOf="@+id/iv_detail_poster"
+            app:layout_constraintStart_toStartOf="@+id/iv_detail_poster"
+            />
 
 
     </android.support.constraint.ConstraintLayout>

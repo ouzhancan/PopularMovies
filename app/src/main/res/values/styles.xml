@@ -12,4 +12,5 @@
         <item name="displayOptions">useLogo|showHome</item>
         <item name="background">@color/background</item>
     </style>
+
 </resources>

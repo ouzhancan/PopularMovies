@@ -26,9 +26,12 @@ public class NetworkUtil {
     public static final String BASE_MOVIE_URL = "https://api.themoviedb.org/3/movie/";
     public static final String BASE_IMAGE_URL = "http://image.tmdb.org/t/p/";
     public static final String BASE_IMDB_MOVIE_URL  = "http://www.imdb.com/title/";
+    public static final String BASE_YOUTUBE_URL = "https://www.youtube.com/watch?v=";
 
     public static final String POPULAR_MOVIE_PATH = "popular";
     public static final String TOP_RATED_MOVIE_PATH = "top_rated";
+    public static final String MOVIE_VIDEO_PATH = "videos";
+    public static final String MOVIE_REVIEW_PATH = "reviews";
     public static final String MOVIE_IMAGE_PATH = "images";
     public static final String IMAGE_SIZE = "w185";
     public static final String IMAGE_BACKDROP_SIZE = "w500";

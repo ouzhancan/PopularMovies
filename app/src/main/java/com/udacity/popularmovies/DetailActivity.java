@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -38,6 +39,7 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
     ImageView mBackdropView, mPosterView;
     TextView mTitleView,mGenresView,mTaglineView,mVoteAverageView;
     TextView mOverviewView,mReleaseDateView,mHomePageView,mImdbLinkView;
+    Button mAddRemoveFavorite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +98,12 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
         mHomePageView = findViewById(R.id.tv_detail_homepage);
         mImdbLinkView = findViewById(R.id.tv_detail_imdb);
         mOverviewView = findViewById(R.id.tv_detail_overview);
+
+        mAddRemoveFavorite = findViewById(R.id.btn_add_remove_favorites);
+
+        // burada favorilerde var mi yok mu once onu kontrol et.
+        // eger var ise, butonun seklini semalini degistir.
+        // daha sonra butona tiklayinca ne olacagini belirle.
     }
 
     @Override

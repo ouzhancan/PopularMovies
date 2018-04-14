@@ -30,6 +30,30 @@ public class Movie {
     String status;
     String tagline;
 
+
+    public Movie() {
+    }
+
+    public Movie(String vote_count, String id, Boolean video, Double vote_average, String title,
+                 Double popularity, String poster_path, String original_language,
+                 String original_title, List<String> genre_ids, String backdrop_path,
+                 Boolean adult, String overview, String release_date) {
+        this.vote_count = vote_count;
+        this.id = id;
+        this.video = video;
+        this.vote_average = vote_average;
+        this.title = title;
+        this.popularity = popularity;
+        this.poster_path = poster_path;
+        this.original_language = original_language;
+        this.original_title = original_title;
+        this.genre_ids = genre_ids;
+        this.backdrop_path = backdrop_path;
+        this.adult = adult;
+        this.overview = overview;
+        this.release_date = release_date;
+    }
+
     public Double getBudget() {
         return budget;
     }
@@ -84,26 +108,6 @@ public class Movie {
 
     public void setTagline(String tagline) {
         this.tagline = tagline;
-    }
-
-    public Movie(String vote_count, String id, Boolean video, Double vote_average, String title,
-                 Double popularity, String poster_path, String original_language,
-                 String original_title, List<String> genre_ids, String backdrop_path,
-                 Boolean adult, String overview, String release_date) {
-        this.vote_count = vote_count;
-        this.id = id;
-        this.video = video;
-        this.vote_average = vote_average;
-        this.title = title;
-        this.popularity = popularity;
-        this.poster_path = poster_path;
-        this.original_language = original_language;
-        this.original_title = original_title;
-        this.genre_ids = genre_ids;
-        this.backdrop_path = backdrop_path;
-        this.adult = adult;
-        this.overview = overview;
-        this.release_date = release_date;
     }
 
     public String getVote_count() {

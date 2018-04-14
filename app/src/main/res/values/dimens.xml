@@ -13,6 +13,7 @@
     <dimen name="movie_title_height">60dp</dimen>
     <dimen name="movie_title_padding">4dp</dimen>
     <dimen name="movie_title">16sp</dimen>
+    <dimen name="movie_vote_average">18sp</dimen>
 
     <dimen name="error_message_size">18sp</dimen>
 
@@ -73,6 +74,11 @@
 
     <!-- movie detail layout dimens -->
 
+
+    <!-- trailer video dimens -->
+    <dimen name="trailer_row_height">80dp</dimen>
+
+    <!-- trailer video dimens -->
 
 </resources>
 

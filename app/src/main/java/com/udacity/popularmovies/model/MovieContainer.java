@@ -8,6 +8,15 @@ public class MovieContainer {
     int total_pages;
     List<Movie> results;
 
+    public MovieContainer() {
+    }
+
+    public MovieContainer(int page, int total_pages, List<Movie> results) {
+        this.page = page;
+        this.total_pages = total_pages;
+        this.results = results;
+    }
+
     public int getPage() {
         return page;
     }

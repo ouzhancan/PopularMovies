@@ -2,35 +2,50 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/menu_settings"
-        android:title="@string/action_settings"
+    <item
+        android:id="@+id/menu_settings"
         android:contentDescription="@string/action_settings_desc"
         android:icon="@drawable/ic_settings"
-        android:visible="true"
         android:orderInCategory="1"
-        app:showAsAction="always">
-    </item>
-    <item android:id="@+id/menu_refresh"
-        android:title="@string/action_refresh"
+        android:title="@string/action_settings"
+        android:visible="true"
+        app:showAsAction="always"></item>
+    <item
+        android:id="@+id/menu_refresh"
         android:contentDescription="@string/action_refresh_desc"
         android:icon="@drawable/ic_refresh"
-        android:visible="true"
         android:orderInCategory="2"
-        app:showAsAction="always">
-    </item>
-    <item android:id="@+id/menu_sort_popular"
-        android:title="@string/action_sort_popular"
+        android:title="@string/action_refresh"
+        android:visible="true"
+        app:showAsAction="always"></item>
+    <item
+        android:id="@+id/menu_sort_popular"
         android:contentDescription="@string/action_sort_popular_desc"
-        android:icon="@android:drawable/ic_menu_sort_by_size"
-        android:visible="true"
         android:orderInCategory="3"
-        app:showAsAction="withText"/>
-    <item android:id="@+id/menu_sort_top"
-        android:title="@string/action_sort_top_movies"
+        android:title="@string/action_sort_popular"
+        android:visible="true"
+        app:showAsAction="withText" />
+    <item
+        android:id="@+id/menu_sort_top"
         android:contentDescription="@string/action_sort_top_movies_desc"
-        android:visible="true"
         android:orderInCategory="3"
-        app:showAsAction="withText"
-        android:icon="@android:drawable/star_on" />
+        android:title="@string/action_sort_top_movies"
+        android:visible="true"
+        app:showAsAction="withText" />
+    <item
+        android:id="@+id/menu_sort_upcoming"
+        android:contentDescription="@string/action_sort_upcoming_movies_desc"
+        android:orderInCategory="4"
+        android:title="@string/action_sort_upcoming_movies"
+        android:visible="true"
+        app:showAsAction="withText" />
+    <item
+        android:id="@+id/menu_sort_favorites"
+        android:contentDescription="@string/action_sort_favorite_movies_desc"
+        android:orderInCategory="5"
+        android:title="@string/action_sort_favorite_movies"
+        android:visible="true"
+        app:showAsAction="withText" />
+
 
 </menu>

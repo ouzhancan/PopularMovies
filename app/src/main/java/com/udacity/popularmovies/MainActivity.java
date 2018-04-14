@@ -2,8 +2,10 @@ package com.udacity.popularmovies;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.annotation.NonNull;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.Loader;
@@ -18,15 +20,22 @@ import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.udacity.popularmovies.data.MovieDbContract;
+import com.udacity.popularmovies.data.MovieDbHelper;
+import com.udacity.popularmovies.model.Genre;
+import com.udacity.popularmovies.model.GenreContainer;
 import com.udacity.popularmovies.model.Movie;
 import com.udacity.popularmovies.model.MovieContainer;
 import com.udacity.popularmovies.retrofit.APIClient;
 import com.udacity.popularmovies.retrofit.APIInterface;
+import com.udacity.popularmovies.utilities.DbUtil;
 import com.udacity.popularmovies.utilities.NetworkUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -40,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     RecyclerView mRecyclerView;
     ProgressBar mProgressBar;
     MovieAdapter mMovieAdapter;
+    LinearLayout mPagerContainer;
     TextView mErrorMsgTextView,mPageCountTextView;
     ImageButton mFirstPageView,mLastPageView,mPreviousPageView,mNextPageView;
 
@@ -51,6 +61,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     int totalPage=0;
 
     private static final String SCREEN_MODE_KEY  = "SCREEN_MODE";
+    private static final String SELECTED_OPTION  = "SELECTED_OPTION";
+
+    DbUtil dbUtil;
+    MovieDbHelper movieDbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         if (savedInstanceState != null) {
             isLandscapeMode = savedInstanceState.getBoolean(SCREEN_MODE_KEY);
+            selectedOption = savedInstanceState.getString(SELECTED_OPTION);
         }
 
         getSupportActionBar().setTitle(getString(R.string.app_name));
@@ -83,18 +98,12 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         mMovieAdapter = new MovieAdapter(this, movies,isLandscapeMode);
         mRecyclerView.setAdapter(mMovieAdapter);
 
+        // db variables initialize
+        movieDbHelper = new MovieDbHelper(this);
+        dbUtil = new DbUtil(movieDbHelper);
 
-        if (isThereAConnection()) {
-            // get and start loader
-            getSupportLoaderManager().initLoader(LOADER_ID, null, this);
-        } else {
-            // check the movie list was loaded before
-            if (!loaderWasStarted()) {
-                showErrorMessage(getString(R.string.connection_error_message));
-            }else{
-                getSupportLoaderManager().restartLoader(LOADER_ID, null, this);
-            }
-        }
+
+        viewMovies();
     }
 
     public void getViewObjects() {
@@ -102,7 +111,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         mProgressBar = findViewById(R.id.pb_loading_indicator);
         mErrorMsgTextView = findViewById(R.id.tv_error_message);
 
+        mPagerContainer = findViewById(R.id.pager_container);
         mPageCountTextView = findViewById(R.id.tv_main_pagination_counter);
+
 
         mFirstPageView = findViewById(R.id.iv_first_page);
         mLastPageView = findViewById(R.id.iv_last_page);
@@ -129,30 +140,50 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         // Action Bar öğelerindeki basılmaları idare edelim
         switch (item.getItemId()) {
             case R.id.menu_sort_popular:
-                selectedOption = NetworkUtil.POPULAR_MOVIE_PATH;
                 currentPage = 1;
+                selectedOption = NetworkUtil.POPULAR_MOVIE_PATH;
                 getSupportLoaderManager().restartLoader(LOADER_ID, null, this);
+                getSupportActionBar().setTitle(getString(R.string.popular_title));
                 return true;
+
             case R.id.menu_sort_top:
                 currentPage = 1;
                 selectedOption = NetworkUtil.TOP_RATED_MOVIE_PATH;
                 getSupportLoaderManager().restartLoader(LOADER_ID, null, this);
+                getSupportActionBar().setTitle(getString(R.string.top_rated_title));
                 return true;
+
+            case R.id.menu_sort_upcoming:
+                currentPage = 1;
+                selectedOption = NetworkUtil.UPCOMING_MOVIE_PATH;
+                getSupportLoaderManager().restartLoader(LOADER_ID, null, this);
+                getSupportActionBar().setTitle(getString(R.string.upcoming_title));
+                return true;
+
+            case R.id.menu_sort_favorites:
+                currentPage = 1;
+                selectedOption = NetworkUtil.FAVORITES_MOVIE_PATH;
+                Cursor cursor = dbUtil.getAllFavorites();
+
+                // get favorite movies from db and add movies list.
+                addFavoritesToList(cursor);
+
+                viewMovies();
+
+                getSupportActionBar().setTitle(getString(R.string.favorite_title));
+
+                return true;
+
             case R.id.menu_settings:
                 // not implemented yet. //
                 return true;
+
             case R.id.menu_refresh:
 
-                if (isThereAConnection()) {
-                    if (!loaderWasStarted()) {
-                        getSupportLoaderManager().initLoader(LOADER_ID, null, this);
-                    } else {
-                        getSupportLoaderManager().restartLoader(LOADER_ID, null, this);
-                    }
-                } else {
-                    showErrorMessage(getString(R.string.connection_error_message));
-                }
+                    viewMovies();
+
                 return true;
+
             default:
                 selectedOption = NetworkUtil.POPULAR_MOVIE_PATH;
                 return super.onOptionsItemSelected(item);
@@ -228,8 +259,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     protected void onSaveInstanceState(Bundle outState) {
 
-        outState.putBoolean(SCREEN_MODE_KEY,isLandscapeMode);
         super.onSaveInstanceState(outState);
+        outState.putBoolean(SCREEN_MODE_KEY,isLandscapeMode);
+        outState.putString(SELECTED_OPTION,selectedOption);
     }
 
     /**
@@ -258,16 +290,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 }
                 break;
         }
-
-        if (isThereAConnection()) {
-            if (!loaderWasStarted()) {
-                getSupportLoaderManager().initLoader(LOADER_ID, null, this);
-            } else {
-                getSupportLoaderManager().restartLoader(LOADER_ID, null, this);
-            }
-        } else {
-            showErrorMessage(getString(R.string.connection_error_message));
-        }
+            viewMovies();
 
     }
 
@@ -301,6 +324,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         mProgressBar.setVisibility(View.INVISIBLE);
         mErrorMsgTextView.setVisibility(View.INVISIBLE);
         mRecyclerView.setVisibility(View.VISIBLE);
+        mPagerContainer.setVisibility(View.VISIBLE);
     }
 
     private void showErrorMessage(String errorMsg) {
@@ -308,8 +332,121 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         mRecyclerView.setVisibility(View.INVISIBLE);
         mErrorMsgTextView.setVisibility(View.VISIBLE);
         mProgressBar.setVisibility(View.INVISIBLE);
+        mPagerContainer.setVisibility(View.INVISIBLE);
 
         mErrorMsgTextView.setText(errorMsg);
+    }
+
+    private void viewMovies(){
+
+        // if selectedOption is not favorite, it will get movies through the network
+        if(selectedOption != NetworkUtil.FAVORITES_MOVIE_PATH){
+            viewMoviesThroughNetwork();
+        }else {
+            viewFavoritesFromDb();
+        }
+    }
+
+    private void viewMoviesThroughNetwork(){
+        if (isThereAConnection()) {
+            if (!loaderWasStarted()) {
+                getSupportLoaderManager().initLoader(LOADER_ID, null, this);
+            } else {
+                getSupportLoaderManager().restartLoader(LOADER_ID, null, this);
+            }
+        } else {
+            showErrorMessage(getString(R.string.connection_error_message));
+        }
+    }
+
+    private void viewFavoritesFromDb(){
+
+        if(movies.size()>0){
+            int mPage = currentPage;
+            List<Movie> subList;
+
+            if((DbUtil.NUMBER_OF_RESULT_PER_PAGE*mPage) > movies.size() ){
+                subList = movies.subList(DbUtil.NUMBER_OF_RESULT_PER_PAGE*(mPage-1),movies.size());
+            }else{
+                subList = movies.subList(DbUtil.NUMBER_OF_RESULT_PER_PAGE*(mPage-1),DbUtil.NUMBER_OF_RESULT_PER_PAGE*mPage );
+            }
+
+            MovieContainer dbContainer = new MovieContainer(currentPage,movies.size(),subList);
+            mMovieAdapter.setData(dbContainer);
+        }else{
+
+            showErrorMessage(getString(R.string.error_no_favorite_movie));
+        }
+
+
+    }
+
+    private void addFavoritesToList(Cursor cursor){
+
+        movies.clear();
+        if(cursor != null && cursor.getCount() > 0){
+
+            if(!cursor.isFirst()){
+                cursor.moveToFirst();
+            }
+            try {
+                do {
+                    Movie newMovie = new Movie();
+                    newMovie.setId(cursor.getString(cursor.getColumnIndex(
+                            MovieDbContract.FavoriteEntry.COLUMN_MOVIE_ID)));
+
+                    newMovie.setTitle(cursor.getString(cursor.getColumnIndex(
+                            MovieDbContract.FavoriteEntry.COLUMN_MOVIE_TITLE)));
+
+                    newMovie.setGenre_ids(stringToGenres(cursor.getString(cursor.getColumnIndex(
+                            MovieDbContract.FavoriteEntry.COLUMN_MOVIE_GENRES))));
+
+                    newMovie.setTagline(cursor.getString(cursor.getColumnIndex(
+                            MovieDbContract.FavoriteEntry.COLUMN_MOVIE_TAGLINE)));
+
+                    newMovie.setVote_average(Double.valueOf(cursor.getString(cursor.getColumnIndex(
+                            MovieDbContract.FavoriteEntry.COLUMN_MOVIE_VOTE))));
+
+                    newMovie.setRelease_date(cursor.getString(cursor.getColumnIndex(
+                            MovieDbContract.FavoriteEntry.COLUMN_MOVIE_RELEASE_DATE)));
+
+                    newMovie.setHomepage(cursor.getString(cursor.getColumnIndex(
+                            MovieDbContract.FavoriteEntry.COLUMN_MOVIE_HOMEPAGE)));
+
+                    newMovie.setImdb_id(cursor.getString(cursor.getColumnIndex(
+                            MovieDbContract.FavoriteEntry.COLUMN_MOVIE_IMDB)));
+
+                    newMovie.setOverview(cursor.getString(cursor.getColumnIndex(
+                            MovieDbContract.FavoriteEntry.COLUMN_MOVIE_OVERVIEW)));
+
+                    newMovie.setPoster_path(cursor.getString(cursor.getColumnIndex(
+                            MovieDbContract.FavoriteEntry.COLUMN_POSTER_PATH)));
+
+                    newMovie.setBackdrop_path(cursor.getString(cursor.getColumnIndex(
+                            MovieDbContract.FavoriteEntry.COLUMN_BACKDROP_PATH)));
+
+                    movies.add(newMovie);
+
+                }while (cursor.moveToNext());
+            } finally {
+                cursor.close();
+            }
+        }
+    }
+
+    @NonNull
+    private List<String> stringToGenres(String genres){
+
+        List<String> list=new ArrayList();
+
+        for(String element : genres.split(" ")){
+            Genre genre = GenreContainer.findId(element);
+            if(genre != null ){
+                list.add(String.valueOf(genre.getId()));
+            }
+        }
+
+        return list;
     }
 
 }

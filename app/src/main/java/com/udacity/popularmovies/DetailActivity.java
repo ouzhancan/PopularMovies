@@ -1,5 +1,7 @@
 package com.udacity.popularmovies;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.AsyncTaskLoader;
@@ -18,7 +20,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
+import com.udacity.popularmovies.data.MovieDbContract;
+import com.udacity.popularmovies.data.MovieDbHelper;
 import com.udacity.popularmovies.model.Movie;
+import com.udacity.popularmovies.utilities.DbUtil;
 import com.udacity.popularmovies.utilities.NetworkUtil;
 
 import java.util.Calendar;
@@ -41,12 +46,20 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
     TextView mOverviewView,mReleaseDateView,mHomePageView,mImdbLinkView;
     Button mAddRemoveFavorite;
 
+    // db helper
+    MovieDbHelper movieDbHelper;
+    DbUtil dbUtil;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
         getViewObjects();
+
+        movieDbHelper = new MovieDbHelper(this);
+        dbUtil = new DbUtil(movieDbHelper);
+
 
         Bundle bundle = getIntent().getExtras();
 
@@ -74,6 +87,7 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
             getSupportActionBar().setLogo(R.drawable.ic_logo_primary_green);
             getSupportActionBar().setHomeButtonEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle(getString(R.string.loading));
         } else {
             showErrorMessage(getString(R.string.error_message));
         }
@@ -104,6 +118,15 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
         // burada favorilerde var mi yok mu once onu kontrol et.
         // eger var ise, butonun seklini semalini degistir.
         // daha sonra butona tiklayinca ne olacagini belirle.
+        mAddRemoveFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(selectedMovie != null) {
+                    dbUtil.addRemoveFavorite(selectedMovie,genres);
+                    invertTheFavoriteButton();
+                }
+            }
+        });
     }
 
     @Override
@@ -226,6 +249,12 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
             mHomePageView.setText(movie.getHomepage());
             mImdbLinkView.setText(NetworkUtil.BASE_IMDB_MOVIE_URL + movie.getImdb_id());
             mOverviewView.setText(movie.getOverview());
+
+            // if the movie exists in favorite db,
+            String id = dbUtil.getMovieById(movie.getId());
+            if(id != "" && id != null){
+                invertTheFavoriteButton();
+            }
         }
     }
 
@@ -238,6 +267,19 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
         toastMessage.setGravity(Gravity.CENTER,0,0);
         toastMessage.show();
 
+    }
+
+
+
+    private void invertTheFavoriteButton(){
+
+        if(mAddRemoveFavorite.getText().equals(getString(R.string.add_favorite))){
+            mAddRemoveFavorite.setText(getString(R.string.remove_favorite));
+            mAddRemoveFavorite.setBackgroundColor(getResources().getColor(R.color.remove_favorite_color));
+        }else{
+            mAddRemoveFavorite.setText(getString(R.string.add_favorite));
+            mAddRemoveFavorite.setBackgroundColor(getResources().getColor(R.color.add_favorite_color));
+        }
     }
 
 }

@@ -29,17 +29,42 @@
                 android:scaleType="fitXY"
                 android:focusable="true" />
 
-            <TextView
-                android:id="@+id/movie_title"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/movie_title_height"
+                android:orientation="horizontal"
                 android:background="@color/movie_title_background"
                 android:layout_below="@id/movie_thumbnail"
                 android:padding="@dimen/movie_title_padding"
-                android:textColor="@color/movie_title"
-                android:textSize="@dimen/movie_title"
-                android:gravity="center_vertical"
-                tools:text="Movie Title" />
+                android:weightSum="10"
+                >
+                <TextView
+                    android:id="@+id/movie_title"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7"
+                    android:background="@color/movie_title_background"
+                    android:textColor="@color/movie_title"
+                    android:textSize="@dimen/movie_title"
+                    android:textAlignment="gravity"
+                    android:gravity="center_vertical"
+                    tools:text="Movie Title" />
+
+                <TextView
+                    android:id="@+id/movie_vote_average"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/movie_title_height"
+                    android:layout_weight="3"
+                    android:background="@color/movie_title_background"
+                    android:layout_below="@id/movie_thumbnail"
+                    android:padding="@dimen/movie_title_padding"
+                    android:textColor="@color/movie_vote_average"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/movie_vote_average"
+                    android:gravity="center"
+                    tools:text="7.0" />
+
+            </LinearLayout>
 
         </RelativeLayout>
 

@@ -2,7 +2,6 @@ package com.udacity.popularmovies.model;
 
 public class Video {
 
-
     String id;
     String iso_639_1;
     String iso_3166_1;

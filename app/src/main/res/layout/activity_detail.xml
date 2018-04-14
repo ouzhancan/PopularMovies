@@ -345,7 +345,7 @@
         <!-- Videos section -->
 
         <TextView
-            android:id="@+id/tv_detail_trial_desc"
+            android:id="@+id/tv_detail_trail_desc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textSize="@dimen/movie_detail_text_size"
@@ -362,20 +362,70 @@
             android:text="@string/detail_trailer"
             />
 
-        <include
-            android:id="@+id/inc_trail_videos"
+        <ListView
+            android:id="@+id/lv_trail_videos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/detail_views_little_margin"
             android:layout_marginStart="@dimen/detail_views_little_margin"
             android:layout_marginTop="@dimen/detail_views_little_margin"
-            app:layout_constraintTop_toBottomOf="@id/tv_detail_trial_desc"
+            app:layout_constraintTop_toBottomOf="@id/tv_detail_trail_desc"
             app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
             app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
             app:layout_constraintLeft_toLeftOf="@+id/iv_detail_poster"
             app:layout_constraintStart_toStartOf="@+id/iv_detail_poster"
             />
 
+        <!-- Divider -->
+        <View
+            android:id="@+id/v_divider2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginLeft="@dimen/detail_views_little_margin"
+            android:layout_marginStart="@dimen/detail_views_little_margin"
+            android:layout_marginTop="@dimen/detail_views_little_margin"
+            android:padding="@dimen/detail_views_little_padding"
+            app:layout_constraintTop_toBottomOf="@+id/lv_trail_videos"
+            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+            app:layout_constraintStart_toStartOf="@+id/tv_detail_overview"
+            app:layout_constraintLeft_toLeftOf="@id/tv_detail_overview"
+            />
+
+        <!-- Review section -->
+
+        <TextView
+            android:id="@+id/tv_detail_review_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/movie_detail_text_size"
+            android:layout_marginLeft="@dimen/detail_views_little_margin"
+            android:layout_marginStart="@dimen/detail_views_little_margin"
+            android:layout_marginTop="@dimen/detail_views_little_margin"
+            android:padding="@dimen/detail_views_little_padding"
+            android:gravity="left"
+            app:layout_constraintTop_toBottomOf="@id/v_divider2"
+            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+            app:layout_constraintLeft_toLeftOf="@+id/iv_detail_poster"
+            app:layout_constraintStart_toStartOf="@+id/iv_detail_poster"
+            android:text="@string/detail_review"
+            />
+
+        <ListView
+            android:id="@+id/lv_review"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/detail_views_little_margin"
+            android:layout_marginStart="@dimen/detail_views_little_margin"
+            android:layout_marginTop="@dimen/detail_views_little_margin"
+            app:layout_constraintTop_toBottomOf="@id/tv_detail_review_desc"
+            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+            app:layout_constraintLeft_toLeftOf="@+id/iv_detail_poster"
+            app:layout_constraintStart_toStartOf="@+id/iv_detail_poster"
+            />
 
     </android.support.constraint.ConstraintLayout>
 

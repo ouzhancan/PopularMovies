@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/trailer_row_height"
+    android:orientation="horizontal"
+    android:padding="@dimen/detail_views_padding"
+    android:weightSum="10">
+
+    <ImageView
+        android:id="@+id/iv_trailer"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="3"
+        android:contentDescription="@string/trailer_play_desc"
+        android:src="@drawable/ic_play_arrow" />
+
+    <TextView
+        android:id="@+id/tv_trailer_name"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="7"
+        android:gravity="center"
+        android:textSize="@dimen/movie_detail_text_size"
+        android:textStyle="bold"
+        tools:text=" Trailer Name" />
+
+
+</LinearLayout>

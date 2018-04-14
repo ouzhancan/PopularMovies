@@ -30,6 +30,9 @@ public class NetworkUtil {
 
     public static final String POPULAR_MOVIE_PATH = "popular";
     public static final String TOP_RATED_MOVIE_PATH = "top_rated";
+    public static final String UPCOMING_MOVIE_PATH = "upcoming";
+    public static final String FAVORITES_MOVIE_PATH = "favorites";
+
     public static final String MOVIE_VIDEO_PATH = "videos";
     public static final String MOVIE_REVIEW_PATH = "reviews";
     public static final String MOVIE_IMAGE_PATH = "images";
@@ -84,7 +87,9 @@ public class NetworkUtil {
         if (option != null && option.equalsIgnoreCase(TOP_RATED_MOVIE_PATH)) {
             // if the option was selected
             movieContainerCall = apiService.getTopRatedMovies(BuildConfig.MOVIE_DB_API_KEY,page);
-        } else {
+        }else if(option != null && option.equalsIgnoreCase(UPCOMING_MOVIE_PATH)) {
+            movieContainerCall = apiService.getUpcomingMovies(BuildConfig.MOVIE_DB_API_KEY,page);
+        }else {
             // default option
             movieContainerCall = apiService.getPopularMovies(BuildConfig.MOVIE_DB_API_KEY,page);
         }

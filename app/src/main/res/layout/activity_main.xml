@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:actionBarNavMode="standard"
     tools:context=".MainActivity">
 
@@ -33,6 +34,7 @@
         android:layout_centerInParent="true"
         android:layout_gravity="center"
         android:textSize="@dimen/error_message_size"
+        android:textColor="@color/movie_error_message"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:textStyle="bold"
@@ -52,6 +54,7 @@
             android:layout_height="@dimen/main_page_count_text_height"
             android:textSize="@dimen/main_pagination_text_size"
             android:layout_gravity="center"
+            android:textColor="@color/main_pagination_text_color"
             tools:text="Contents page number 111312"/>
         <LinearLayout
             android:layout_width="match_parent"

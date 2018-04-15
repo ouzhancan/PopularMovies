@@ -3,8 +3,8 @@ package com.udacity.popularmovies.retrofit;
 
 import com.udacity.popularmovies.model.Movie;
 import com.udacity.popularmovies.model.MovieContainer;
-import com.udacity.popularmovies.model.Review;
-import com.udacity.popularmovies.model.Video;
+import com.udacity.popularmovies.model.ReviewContainer;
+import com.udacity.popularmovies.model.VideoContainer;
 import com.udacity.popularmovies.utilities.NetworkUtil;
 
 import retrofit2.Call;
@@ -29,10 +29,10 @@ public interface APIInterface {
     Call<Movie> getMovieById(@Path("movie_id") String movie_id, @Query("api_key")String api_key);
 
     @GET("{movie_id}/"+NetworkUtil.MOVIE_REVIEW_PATH)
-    Call<Review> getReviewsByMovieId(@Path("movie_id") String movie_id, @Query("api_key")String api_key);
+    Call<ReviewContainer> getReviewsByMovieId(@Path("movie_id") String movie_id, @Query("api_key")String api_key);
 
     @GET("{movie_id}/"+NetworkUtil.MOVIE_VIDEO_PATH)
-    Call<Video> getVideosByMovieId(@Path("movie_id") String movie_id, @Query("api_key")String api_key);
+    Call<VideoContainer> getVideosByMovieId(@Path("movie_id") String movie_id, @Query("api_key")String api_key);
 
     /* *** *** *** */
 

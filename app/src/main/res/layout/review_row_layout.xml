@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_review"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/detail_views_padding"
+    android:weightSum="10">
+
+    <TextView
+        android:id="@+id/tv_review_author"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:layout_marginTop="@dimen/detail_views_little_margin"
+        android:layout_weight="3"
+        android:textSize="@dimen/review_author_text_size"
+        tools:text="Author" />
+
+    <TextView
+        android:id="@+id/tv_review_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/detail_views_little_margin"
+        android:layout_weight="7"
+        android:gravity="start"
+        android:textSize="@dimen/movie_detail_text_size"
+        android:textStyle="bold"
+        tools:text=" Reviews content includes a lot of sentences or words that
+            can be sarcastic or delightful" />
+
+
+</LinearLayout>

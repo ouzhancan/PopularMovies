@@ -4,37 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/background_detail"
+    android:orientation="vertical"
     android:padding="@dimen/detail_frame_padding"
     tools:context=".DetailActivity">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/cl_detail_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <ProgressBar
             android:id="@+id/pb_detail"
             android:layout_width="@dimen/progress_bar_width"
             android:layout_height="@dimen/progress_bar_height"
-            app:layout_constraintTop_toTopOf="parent"
+            android:elevation="@dimen/progress_bar_translationZ"
+            android:translationZ="@dimen/progress_bar_translationZ"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:translationZ="@dimen/progress_bar_translationZ"
-            android:elevation="@dimen/progress_bar_translationZ"
-            android:visibility="invisible"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/iv_detail_backdrop"
             android:layout_width="match_parent"
             android:layout_height="@dimen/detail_backdrop_height"
             android:contentDescription="@string/backdrop_content_desc"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/iv_detail_poster"
@@ -50,30 +49,29 @@
             android:id="@+id/tv_detail_title_desc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/movie_detail_desc_text_size"
             android:layout_marginLeft="@dimen/detail_views_little_margin"
             android:layout_marginStart="@dimen/detail_views_little_margin"
             android:gravity="left"
-            app:layout_constraintTop_toTopOf="@id/iv_detail_poster"
-            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
-            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
-            app:layout_constraintLeft_toRightOf="@+id/iv_detail_poster"
-            app:layout_constraintStart_toEndOf="@+id/iv_detail_poster"
             android:text="@string/detail_title"
-            />
+            android:textSize="@dimen/movie_detail_desc_text_size"
+            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+            app:layout_constraintLeft_toRightOf="@+id/iv_detail_poster"
+            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+            app:layout_constraintStart_toEndOf="@+id/iv_detail_poster"
+            app:layout_constraintTop_toTopOf="@id/iv_detail_poster" />
 
         <TextView
             android:id="@+id/tv_detail_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:gravity="top"
             android:textSize="@dimen/movie_detail_title_size"
             android:textStyle="bold"
-            android:gravity="top"
-            app:layout_constraintTop_toBottomOf="@+id/tv_detail_title_desc"
             app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+            app:layout_constraintLeft_toLeftOf="@id/tv_detail_title_desc"
             app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
             app:layout_constraintStart_toStartOf="@+id/tv_detail_title_desc"
-            app:layout_constraintLeft_toLeftOf="@id/tv_detail_title_desc"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_title_desc"
             tools:text="@string/detail_title_tools" />
 
 
@@ -82,19 +80,18 @@
             android:id="@+id/tv_detail_tagline_desc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/movie_detail_desc_text_size"
             android:layout_marginLeft="@dimen/detail_views_little_margin"
             android:layout_marginStart="@dimen/detail_views_little_margin"
             android:layout_marginTop="@dimen/detail_views_little_margin"
-            android:padding="@dimen/detail_views_little_padding"
             android:gravity="left"
-            app:layout_constraintTop_toBottomOf="@id/tv_detail_title"
-            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
-            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
-            app:layout_constraintLeft_toRightOf="@+id/iv_detail_poster"
-            app:layout_constraintStart_toEndOf="@+id/iv_detail_poster"
+            android:padding="@dimen/detail_views_little_padding"
             android:text="@string/detail_tagline"
-            />
+            android:textSize="@dimen/movie_detail_desc_text_size"
+            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+            app:layout_constraintLeft_toRightOf="@+id/iv_detail_poster"
+            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+            app:layout_constraintStart_toEndOf="@+id/iv_detail_poster"
+            app:layout_constraintTop_toBottomOf="@id/tv_detail_title" />
 
         <TextView
             android:id="@+id/tv_detail_tagline"
@@ -102,11 +99,11 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/movie_detail_text_size"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@+id/tv_detail_tagline_desc"
             app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+            app:layout_constraintLeft_toLeftOf="@id/tv_detail_tagline_desc"
             app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
             app:layout_constraintStart_toStartOf="@+id/tv_detail_tagline_desc"
-            app:layout_constraintLeft_toLeftOf="@id/tv_detail_tagline_desc"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_tagline_desc"
             tools:text="@string/detail_tagline_tools" />
 
         <!-- Genres -->
@@ -114,19 +111,18 @@
             android:id="@+id/tv_detail_genres_desc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/movie_detail_desc_text_size"
             android:layout_marginLeft="@dimen/detail_views_little_margin"
             android:layout_marginStart="@dimen/detail_views_little_margin"
             android:layout_marginTop="@dimen/detail_views_little_margin"
-            android:padding="@dimen/detail_views_little_padding"
             android:gravity="left"
-            app:layout_constraintTop_toBottomOf="@id/tv_detail_tagline"
-            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
-            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
-            app:layout_constraintLeft_toRightOf="@+id/iv_detail_poster"
-            app:layout_constraintStart_toEndOf="@+id/iv_detail_poster"
+            android:padding="@dimen/detail_views_little_padding"
             android:text="@string/detail_genres"
-            />
+            android:textSize="@dimen/movie_detail_desc_text_size"
+            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+            app:layout_constraintLeft_toRightOf="@+id/iv_detail_poster"
+            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+            app:layout_constraintStart_toEndOf="@+id/iv_detail_poster"
+            app:layout_constraintTop_toBottomOf="@id/tv_detail_tagline" />
 
         <TextView
             android:id="@+id/tv_detail_genres"
@@ -134,11 +130,11 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/movie_detail_text_size"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@+id/tv_detail_genres_desc"
             app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+            app:layout_constraintLeft_toLeftOf="@id/tv_detail_genres_desc"
             app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
             app:layout_constraintStart_toStartOf="@+id/tv_detail_genres_desc"
-            app:layout_constraintLeft_toLeftOf="@id/tv_detail_genres_desc"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_genres_desc"
             tools:text="@string/detail_genres_tools" />
 
         <!-- Vote Average / Vote Count  -->
@@ -146,19 +142,18 @@
             android:id="@+id/tv_detail_vote_desc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/movie_detail_desc_text_size"
             android:layout_marginLeft="@dimen/detail_views_little_margin"
             android:layout_marginStart="@dimen/detail_views_little_margin"
             android:layout_marginTop="@dimen/detail_views_little_margin"
-            android:padding="@dimen/detail_views_little_padding"
             android:gravity="left"
-            app:layout_constraintTop_toBottomOf="@id/tv_detail_genres"
-            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
-            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
-            app:layout_constraintLeft_toRightOf="@+id/iv_detail_poster"
-            app:layout_constraintStart_toEndOf="@+id/iv_detail_poster"
+            android:padding="@dimen/detail_views_little_padding"
             android:text="@string/detail_vote"
-            />
+            android:textSize="@dimen/movie_detail_desc_text_size"
+            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+            app:layout_constraintLeft_toRightOf="@+id/iv_detail_poster"
+            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+            app:layout_constraintStart_toEndOf="@+id/iv_detail_poster"
+            app:layout_constraintTop_toBottomOf="@id/tv_detail_genres" />
 
         <TextView
             android:id="@+id/tv_detail_vote"
@@ -166,11 +161,11 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/movie_detail_text_size"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@+id/tv_detail_vote_desc"
             app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+            app:layout_constraintLeft_toLeftOf="@id/tv_detail_vote_desc"
             app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
             app:layout_constraintStart_toStartOf="@+id/tv_detail_vote_desc"
-            app:layout_constraintLeft_toLeftOf="@id/tv_detail_vote_desc"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_vote_desc"
             tools:text="@string/detail_vote_tools" />
 
         <!-- Add / Remove Favorite -->
@@ -178,20 +173,19 @@
             android:id="@+id/btn_add_remove_favorites"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/add_favorite_color"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/movie_detail_text_size"
-            android:text="@string/add_favorite"
             android:layout_marginLeft="@dimen/detail_views_little_margin"
             android:layout_marginStart="@dimen/detail_views_little_margin"
             android:layout_marginTop="@dimen/detail_views_little_margin"
+            android:background="@color/add_favorite_color"
             android:padding="@dimen/detail_views_padding"
-            app:layout_constraintTop_toBottomOf="@id/iv_detail_poster"
-            app:layout_constraintLeft_toLeftOf="@+id/iv_detail_poster"
-            app:layout_constraintStart_toStartOf="@+id/iv_detail_poster"
-            app:layout_constraintRight_toRightOf="@id/iv_detail_poster"
+            android:text="@string/add_favorite"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/movie_detail_text_size"
             app:layout_constraintEnd_toEndOf="@id/iv_detail_poster"
-            />
+            app:layout_constraintLeft_toLeftOf="@+id/iv_detail_poster"
+            app:layout_constraintRight_toRightOf="@id/iv_detail_poster"
+            app:layout_constraintStart_toStartOf="@+id/iv_detail_poster"
+            app:layout_constraintTop_toBottomOf="@id/iv_detail_poster" />
 
         <!-- Release Date -->
         <TextView
@@ -201,14 +195,14 @@
             android:layout_marginLeft="@dimen/detail_views_little_margin"
             android:layout_marginStart="@dimen/detail_views_little_margin"
             android:layout_marginTop="@dimen/detail_views_little_margin"
+            android:gravity="left"
             android:padding="@dimen/detail_views_little_padding"
             android:text="@string/detail_release_date"
-            android:gravity="left"
             android:textSize="@dimen/movie_detail_desc_text_size"
             app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+            app:layout_constraintLeft_toRightOf="@id/btn_add_remove_favorites"
             app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
             app:layout_constraintStart_toEndOf="@id/btn_add_remove_favorites"
-            app:layout_constraintLeft_toRightOf="@id/btn_add_remove_favorites"
             app:layout_constraintTop_toBottomOf="@id/iv_detail_poster" />
 
         <TextView
@@ -220,9 +214,9 @@
             android:textSize="@dimen/movie_detail_text_size"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+            app:layout_constraintLeft_toRightOf="@id/btn_add_remove_favorites"
             app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
             app:layout_constraintStart_toEndOf="@id/btn_add_remove_favorites"
-            app:layout_constraintLeft_toRightOf="@id/btn_add_remove_favorites"
             app:layout_constraintTop_toBottomOf="@+id/tv_detail_release_date_desc"
             tools:text="@string/detail_release_date_tools" />
 
@@ -231,32 +225,31 @@
             android:id="@+id/tv_detail_homepage_desc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/movie_detail_desc_text_size"
             android:layout_marginLeft="@dimen/detail_views_little_margin"
             android:layout_marginStart="@dimen/detail_views_little_margin"
             android:layout_marginTop="@dimen/detail_views_little_margin"
-            android:padding="@dimen/detail_views_little_padding"
             android:gravity="left"
-            app:layout_constraintTop_toBottomOf="@id/btn_add_remove_favorites"
-            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
-            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
-            app:layout_constraintLeft_toLeftOf="@+id/iv_detail_poster"
-            app:layout_constraintStart_toStartOf="@+id/iv_detail_poster"
+            android:padding="@dimen/detail_views_little_padding"
             android:text="@string/detail_homepage"
-            />
+            android:textSize="@dimen/movie_detail_desc_text_size"
+            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+            app:layout_constraintLeft_toLeftOf="@+id/iv_detail_poster"
+            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+            app:layout_constraintStart_toStartOf="@+id/iv_detail_poster"
+            app:layout_constraintTop_toBottomOf="@id/btn_add_remove_favorites" />
 
         <TextView
             android:id="@+id/tv_detail_homepage"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:autoLink="web"
             android:textSize="@dimen/movie_detail_text_size"
             android:textStyle="bold"
-            android:autoLink="web"
-            app:layout_constraintTop_toBottomOf="@+id/tv_detail_homepage_desc"
             app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+            app:layout_constraintLeft_toLeftOf="@id/tv_detail_homepage_desc"
             app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
             app:layout_constraintStart_toStartOf="@+id/tv_detail_homepage_desc"
-            app:layout_constraintLeft_toLeftOf="@id/tv_detail_homepage_desc"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_homepage_desc"
             tools:text="@string/detail_homepage_tools" />
 
         <!-- IMDB -->
@@ -264,32 +257,31 @@
             android:id="@+id/tv_detail_imdb_desc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/movie_detail_desc_text_size"
             android:layout_marginLeft="@dimen/detail_views_little_margin"
             android:layout_marginStart="@dimen/detail_views_little_margin"
             android:layout_marginTop="@dimen/detail_views_little_margin"
-            android:padding="@dimen/detail_views_little_padding"
             android:gravity="left"
-            app:layout_constraintTop_toBottomOf="@id/tv_detail_homepage"
-            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
-            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
-            app:layout_constraintLeft_toLeftOf="@+id/iv_detail_poster"
-            app:layout_constraintStart_toStartOf="@+id/iv_detail_poster"
+            android:padding="@dimen/detail_views_little_padding"
             android:text="@string/detail_imdb_id"
-            />
+            android:textSize="@dimen/movie_detail_desc_text_size"
+            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+            app:layout_constraintLeft_toLeftOf="@+id/iv_detail_poster"
+            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+            app:layout_constraintStart_toStartOf="@+id/iv_detail_poster"
+            app:layout_constraintTop_toBottomOf="@id/tv_detail_homepage" />
 
         <TextView
             android:id="@+id/tv_detail_imdb"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:autoLink="web"
             android:textSize="@dimen/movie_detail_text_size"
             android:textStyle="bold"
-            android:autoLink="web"
-            app:layout_constraintTop_toBottomOf="@+id/tv_detail_imdb_desc"
             app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+            app:layout_constraintLeft_toLeftOf="@id/tv_detail_imdb_desc"
             app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
             app:layout_constraintStart_toStartOf="@+id/tv_detail_imdb_desc"
-            app:layout_constraintLeft_toLeftOf="@id/tv_detail_imdb_desc"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_imdb_desc"
             tools:text="@string/detail_imdb_id_tools" />
 
         <!-- Overview -->
@@ -297,19 +289,18 @@
             android:id="@+id/tv_detail_overview_desc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/movie_detail_desc_text_size"
             android:layout_marginLeft="@dimen/detail_views_little_margin"
             android:layout_marginStart="@dimen/detail_views_little_margin"
             android:layout_marginTop="@dimen/detail_views_little_margin"
-            android:padding="@dimen/detail_views_little_padding"
             android:gravity="left"
-            app:layout_constraintTop_toBottomOf="@id/tv_detail_imdb"
-            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
-            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
-            app:layout_constraintLeft_toLeftOf="@+id/iv_detail_poster"
-            app:layout_constraintStart_toStartOf="@+id/iv_detail_poster"
+            android:padding="@dimen/detail_views_little_padding"
             android:text="@string/detail_overview"
-            />
+            android:textSize="@dimen/movie_detail_desc_text_size"
+            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+            app:layout_constraintLeft_toLeftOf="@+id/iv_detail_poster"
+            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+            app:layout_constraintStart_toStartOf="@+id/iv_detail_poster"
+            app:layout_constraintTop_toBottomOf="@id/tv_detail_imdb" />
 
         <TextView
             android:id="@+id/tv_detail_overview"
@@ -317,11 +308,11 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/movie_detail_text_size"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@+id/tv_detail_overview_desc"
             app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+            app:layout_constraintLeft_toLeftOf="@id/tv_detail_overview_desc"
             app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
             app:layout_constraintStart_toStartOf="@+id/tv_detail_overview_desc"
-            app:layout_constraintLeft_toLeftOf="@id/tv_detail_overview_desc"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_overview_desc"
             tools:text="@string/detail_overview_tools" />
 
         <!-- Divider -->
@@ -329,17 +320,16 @@
             android:id="@+id/v_divider"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@android:color/darker_gray"
             android:layout_marginLeft="@dimen/detail_views_little_margin"
             android:layout_marginStart="@dimen/detail_views_little_margin"
             android:layout_marginTop="@dimen/detail_views_little_margin"
+            android:background="@android:color/darker_gray"
             android:padding="@dimen/detail_views_little_padding"
-            app:layout_constraintTop_toBottomOf="@+id/tv_detail_overview"
             app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+            app:layout_constraintLeft_toLeftOf="@id/tv_detail_overview"
             app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
             app:layout_constraintStart_toStartOf="@+id/tv_detail_overview"
-            app:layout_constraintLeft_toLeftOf="@id/tv_detail_overview"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_overview" />
 
 
         <!-- Videos section -->
@@ -348,50 +338,59 @@
             android:id="@+id/tv_detail_trail_desc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/movie_detail_text_size"
             android:layout_marginLeft="@dimen/detail_views_little_margin"
             android:layout_marginStart="@dimen/detail_views_little_margin"
             android:layout_marginTop="@dimen/detail_views_little_margin"
-            android:padding="@dimen/detail_views_little_padding"
             android:gravity="left"
-            app:layout_constraintTop_toBottomOf="@id/v_divider"
-            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
-            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
-            app:layout_constraintLeft_toLeftOf="@+id/iv_detail_poster"
-            app:layout_constraintStart_toStartOf="@+id/iv_detail_poster"
+            android:padding="@dimen/detail_views_little_padding"
             android:text="@string/detail_trailer"
-            />
+            android:textSize="@dimen/movie_detail_text_size"
+            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+            app:layout_constraintLeft_toLeftOf="@+id/iv_detail_poster"
+            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+            app:layout_constraintStart_toStartOf="@+id/iv_detail_poster"
+            app:layout_constraintTop_toBottomOf="@id/v_divider" />
+
+        <ProgressBar
+            android:id="@+id/pb_trailer"
+            android:layout_width="@dimen/progress_bar_width"
+            android:layout_height="@dimen/progress_bar_height"
+            android:elevation="@dimen/progress_bar_translationZ"
+            android:translationZ="@dimen/progress_bar_translationZ"
+            android:visibility="invisible"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_detail_trail_desc" />
 
         <ListView
             android:id="@+id/lv_trail_videos"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/detail_views_little_margin"
             android:layout_marginStart="@dimen/detail_views_little_margin"
             android:layout_marginTop="@dimen/detail_views_little_margin"
-            app:layout_constraintTop_toBottomOf="@id/tv_detail_trail_desc"
             app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
-            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
             app:layout_constraintLeft_toLeftOf="@+id/iv_detail_poster"
+            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
             app:layout_constraintStart_toStartOf="@+id/iv_detail_poster"
-            />
+            app:layout_constraintTop_toBottomOf="@id/tv_detail_trail_desc" />
+
 
         <!-- Divider -->
         <View
             android:id="@+id/v_divider2"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@android:color/darker_gray"
             android:layout_marginLeft="@dimen/detail_views_little_margin"
             android:layout_marginStart="@dimen/detail_views_little_margin"
             android:layout_marginTop="@dimen/detail_views_little_margin"
+            android:background="@android:color/darker_gray"
             android:padding="@dimen/detail_views_little_padding"
-            app:layout_constraintTop_toBottomOf="@+id/lv_trail_videos"
             app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+            app:layout_constraintLeft_toLeftOf="@id/tv_detail_overview"
             app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
             app:layout_constraintStart_toStartOf="@+id/tv_detail_overview"
-            app:layout_constraintLeft_toLeftOf="@id/tv_detail_overview"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/lv_trail_videos" />
 
         <!-- Review section -->
 
@@ -399,33 +398,58 @@
             android:id="@+id/tv_detail_review_desc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/movie_detail_text_size"
             android:layout_marginLeft="@dimen/detail_views_little_margin"
             android:layout_marginStart="@dimen/detail_views_little_margin"
             android:layout_marginTop="@dimen/detail_views_little_margin"
-            android:padding="@dimen/detail_views_little_padding"
             android:gravity="left"
-            app:layout_constraintTop_toBottomOf="@id/v_divider2"
-            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
-            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
-            app:layout_constraintLeft_toLeftOf="@+id/iv_detail_poster"
-            app:layout_constraintStart_toStartOf="@+id/iv_detail_poster"
+            android:padding="@dimen/detail_views_little_padding"
             android:text="@string/detail_review"
-            />
+            android:textSize="@dimen/movie_detail_text_size"
+            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+            app:layout_constraintLeft_toLeftOf="@+id/iv_detail_poster"
+            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+            app:layout_constraintStart_toStartOf="@+id/iv_detail_poster"
+            app:layout_constraintTop_toBottomOf="@id/v_divider2" />
 
-        <ListView
-            android:id="@+id/lv_review"
+        <ProgressBar
+            android:id="@+id/pb_review"
+            android:layout_width="@dimen/progress_bar_width"
+            android:layout_height="@dimen/progress_bar_height"
+            android:elevation="@dimen/progress_bar_translationZ"
+            android:translationZ="@dimen/progress_bar_translationZ"
+            android:visibility="invisible"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_detail_review_desc" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:layout_marginLeft="@dimen/detail_views_little_margin"
             android:layout_marginStart="@dimen/detail_views_little_margin"
             android:layout_marginTop="@dimen/detail_views_little_margin"
-            app:layout_constraintTop_toBottomOf="@id/tv_detail_review_desc"
             app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
-            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
             app:layout_constraintLeft_toLeftOf="@+id/iv_detail_poster"
+            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
             app:layout_constraintStart_toStartOf="@+id/iv_detail_poster"
-            />
+            app:layout_constraintTop_toBottomOf="@id/tv_detail_review_desc"
+            >
+
+            <ListView
+                android:id="@+id/lv_review"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                 />
+
+            <TextView
+                android:id="@+id/tv_read_more_review"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+        </LinearLayout>
+
 
     </android.support.constraint.ConstraintLayout>
 

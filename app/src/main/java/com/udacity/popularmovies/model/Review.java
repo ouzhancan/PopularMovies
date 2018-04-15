@@ -2,10 +2,20 @@ package com.udacity.popularmovies.model;
 
 public class Review {
 
-    String author;
-    String content;
-    String id;
-    String url;
+    public String author;
+    public String content;
+    public String id;
+    public String url;
+
+    public Review() {
+    }
+
+    public Review(String author, String content, String id, String url) {
+        this.author = author;
+        this.content = content;
+        this.id = id;
+        this.url = url;
+    }
 
     public String getAuthor() {
         return author;

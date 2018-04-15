@@ -9,6 +9,10 @@ import android.util.Log;
 import com.udacity.popularmovies.BuildConfig;
 import com.udacity.popularmovies.model.Movie;
 import com.udacity.popularmovies.model.MovieContainer;
+import com.udacity.popularmovies.model.Review;
+import com.udacity.popularmovies.model.ReviewContainer;
+import com.udacity.popularmovies.model.Video;
+import com.udacity.popularmovies.model.VideoContainer;
 import com.udacity.popularmovies.retrofit.APIClient;
 import com.udacity.popularmovies.retrofit.APIInterface;
 
@@ -169,6 +173,70 @@ public class NetworkUtil {
         }
 
         return movie;
+    }
+
+
+    public static VideoContainer getVideosByMovieId(String movieId) {
+
+        VideoContainer videoContainer = null;
+
+        // *** **** Retrofit service **** *** //
+        apiService = APIClient.getClient().create(APIInterface.class);
+
+        Call<VideoContainer> videoContainerCall;
+
+        if (movieId != null) {
+            videoContainerCall = apiService.getVideosByMovieId(movieId, BuildConfig.MOVIE_DB_API_KEY);
+
+            if (videoContainerCall != null) {
+
+            /* Synchronous calling */
+                try {
+                    Response<VideoContainer> response = videoContainerCall.execute();
+
+                    if (response.isSuccessful()) {
+                        videoContainer = response.body();
+                    }
+                } catch (IOException ex) {
+                    Log.d("RETROFIT_CALL", "retrofit synchronous calling was thrown an error -> " + ex.getLocalizedMessage());
+                }
+            }
+            /* Synchronous calling end */
+        }
+
+        return videoContainer;
+    }
+
+
+    public static ReviewContainer getReviewsByMovieId(String movieId) {
+
+        ReviewContainer reviewContainer = null;
+
+        // *** **** Retrofit service **** *** //
+        apiService = APIClient.getClient().create(APIInterface.class);
+
+        Call<ReviewContainer> reviewContainerCall;
+
+        if (movieId != null) {
+            reviewContainerCall = apiService.getReviewsByMovieId(movieId, BuildConfig.MOVIE_DB_API_KEY);
+
+            if (reviewContainerCall != null) {
+
+            /* Synchronous calling */
+                try {
+                    Response<ReviewContainer> response = reviewContainerCall.execute();
+
+                    if (response.isSuccessful()) {
+                        reviewContainer = response.body();
+                    }
+                } catch (IOException ex) {
+                    Log.d("RETROFIT_CALL", "retrofit synchronous calling was thrown an error -> " + ex.getLocalizedMessage());
+                }
+            }
+            /* Synchronous calling end */
+        }
+
+        return reviewContainer;
     }
 
 

@@ -27,7 +27,6 @@
         app:showAsAction="withText" />
     <item
         android:id="@+id/menu_sort_top"
-        android:contentDescription="@string/action_sort_top_movies_desc"
         android:orderInCategory="3"
         android:title="@string/action_sort_top_movies"
         android:visible="true"

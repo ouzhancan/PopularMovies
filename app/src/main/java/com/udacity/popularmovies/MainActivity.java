@@ -4,7 +4,9 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
+import android.net.Network;
 import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.AsyncTaskLoader;
@@ -30,6 +32,7 @@ import com.udacity.popularmovies.model.Genre;
 import com.udacity.popularmovies.model.GenreContainer;
 import com.udacity.popularmovies.model.Movie;
 import com.udacity.popularmovies.model.MovieContainer;
+import com.udacity.popularmovies.model.VideoContainer;
 import com.udacity.popularmovies.retrofit.APIClient;
 import com.udacity.popularmovies.retrofit.APIInterface;
 import com.udacity.popularmovies.utilities.DbUtil;
@@ -448,5 +451,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         return list;
     }
+
 
 }

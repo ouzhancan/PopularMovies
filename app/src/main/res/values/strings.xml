@@ -3,8 +3,9 @@
     <string name="loading">Loading ...</string>
     <string name="error_message">No data was received !</string>
     <string name="connection_error_message">
-        There is not a stable network connection !
-        Please connect a network and then refresh the list.</string>
+        There is not a stable network connection !\n
+        Please connect a network and then refresh the list.\n
+        Or you can try reach favorite movies could have been using on offline mode.</string>
 
     <string name="error_no_favorite_movie">We worked hard but
         didn\'t find any favorite movie. ! So Sorry :(</string>
@@ -21,7 +22,6 @@
     <string name="action_sort_popular">Popular</string>
     <string name="action_sort_popular_desc">if select this option movies are sorted by popularity</string>
     <string name="action_sort_top_movies">Top Rated</string>
-    <string name="action_sort_top_movies_desc">if select this option movies are sorted by votes</string>
     <string name="action_sort_favorite_movies">Favorites</string>
     <string name="action_sort_favorite_movies_desc">if select this option favorite movies are shown</string>
     <string name="action_sort_upcoming_movies">Upcoming</string>

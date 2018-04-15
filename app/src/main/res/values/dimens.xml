@@ -76,9 +76,12 @@
 
 
     <!-- trailer video dimens -->
-    <dimen name="trailer_row_height">80dp</dimen>
-
+    <dimen name="trailer_row_height">40dp</dimen>
     <!-- trailer video dimens -->
+
+    <!-- review video dimens -->
+    <dimen name="review_author_text_size">10sp</dimen>
+    <!-- review video dimens -->
 
 </resources>
 

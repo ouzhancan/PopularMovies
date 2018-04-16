@@ -261,10 +261,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-
-        super.onSaveInstanceState(outState);
         outState.putBoolean(SCREEN_MODE_KEY,isLandscapeMode);
         outState.putString(SELECTED_OPTION,selectedOption);
+
+        super.onSaveInstanceState(outState);
     }
 
     /**
@@ -380,8 +380,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
             showErrorMessage(getString(R.string.error_no_favorite_movie));
         }
-
-
     }
 
     private void addFavoritesToList(Cursor cursor){

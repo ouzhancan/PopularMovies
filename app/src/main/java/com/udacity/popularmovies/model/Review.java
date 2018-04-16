@@ -1,6 +1,8 @@
 package com.udacity.popularmovies.model;
 
-public class Review {
+import java.io.Serializable;
+
+public class Review implements Serializable{
 
     public String author;
     public String content;

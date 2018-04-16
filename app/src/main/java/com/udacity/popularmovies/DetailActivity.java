@@ -1,10 +1,13 @@
 package com.udacity.popularmovies;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
+import android.os.Parcelable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.LoaderManager;
+import android.support.v4.app.NavUtils;
 import android.support.v4.content.AsyncTaskLoader;
 import android.content.Context;
 import android.support.v4.content.Loader;
@@ -14,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -36,6 +40,7 @@ import com.udacity.popularmovies.utilities.NetworkUtil;
 
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -45,8 +50,6 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
 
 
     private static final int LOADER_ID = 640;
-    private static final int TRAILER_LOADER_ID = 740;
-    private static final int REVIEW_LOADER_ID = 840;
 
     TrailerAsyncTask trailerAsyncTask;
     ReviewAsyncTask reviewAsyncTask;
@@ -55,7 +58,7 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
     ReviewAdapter reviewAdapter;
 
     List<Video> videoList;
-    List<Review> reviewList;
+    ArrayList<Review> reviewList;
 
     Movie selectedMovie;
     String movie_id;
@@ -63,12 +66,13 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
 
     // view objects //
     ConstraintLayout mConstraintContainer;
-    ProgressBar mProgressBar,mTrailerProgressBar,mReviewProgressBar;
+    ProgressBar mProgressBar, mTrailerProgressBar, mReviewProgressBar;
     ImageView mBackdropView, mPosterView;
     TextView mTitleView, mGenresView, mTaglineView, mVoteAverageView;
     TextView mOverviewView, mReleaseDateView, mHomePageView, mImdbLinkView;
+    TextView mMoreReviews;
     Button mAddRemoveFavorite;
-    ListView lvTrailer,lvReview;
+    ListView lvTrailer, lvReview;
 
     // db helper
     MovieDbHelper movieDbHelper;
@@ -97,8 +101,8 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
         trailerAsyncTask = new TrailerAsyncTask();
         reviewAsyncTask = new ReviewAsyncTask();
 
-        trailerAdapter = new TrailerAdapter(this,R.layout.trailer_row_layout,videoList);
-        reviewAdapter = new ReviewAdapter(this,R.layout.review_row_layout,reviewList);
+        trailerAdapter = new TrailerAdapter(this, R.layout.trailer_row_layout, videoList);
+        reviewAdapter = new ReviewAdapter(this, R.layout.review_row_layout, reviewList);
 
         lvTrailer.setAdapter(trailerAdapter);
         lvReview.setAdapter(reviewAdapter);
@@ -126,12 +130,34 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
 
             getSupportActionBar().setLogo(R.drawable.ic_logo_primary_green);
             getSupportActionBar().setHomeButtonEnabled(true);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setTitle(getString(R.string.loading));
         } else {
             showErrorMessage(getString(R.string.error_message));
         }
 
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+
+        outState.putString("movie_id",movie_id);
+        outState.putString("genres",genres);
+
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+
+        switch(item.getItemId()){
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     public void getViewObjects() {
@@ -168,6 +194,20 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
             }
         });
 
+        mMoreReviews = findViewById(R.id.tv_more_review);
+        mMoreReviews.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DetailActivity.this, ReviewActivity.class);
+
+                intent.putExtra("movie_id", movie_id);
+                intent.putExtra("movie_name", selectedMovie.getTitle());
+                intent.putExtra("reviews", (Serializable) reviewList);
+                startActivity(intent);
+            }
+        });
+
+
         lvTrailer = findViewById(R.id.lv_trail_videos);
         lvReview = findViewById(R.id.lv_review);
 
@@ -179,8 +219,10 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
 
     }
 
+
     /**
      * get movie by id
+     *
      * @param id
      * @param args
      * @return
@@ -338,13 +380,13 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
     }
 
 
-    public class TrailerAsyncTask extends AsyncTask<Void,Void,VideoContainer> {
+    public class TrailerAsyncTask extends AsyncTask<Void, Void, VideoContainer> {
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             mTrailerProgressBar.setVisibility(View.VISIBLE);
-            lvTrailer.setVisibility(View.INVISIBLE);
+            lvTrailer.setVisibility(View.GONE);
         }
 
         @Override
@@ -358,10 +400,10 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
             if (data != null) {
                 videoList = data.getResults();
                 trailerAdapter.setData(data);
-                mTrailerProgressBar.setVisibility(View.INVISIBLE);
+                mTrailerProgressBar.setVisibility(View.GONE);
                 lvTrailer.setVisibility(View.VISIBLE);
 
-                int height = (int)getResources().getDimension(R.dimen.trailer_row_height);
+                int height = (int) getResources().getDimension(R.dimen.trailer_row_height);
                 int size = videoList.size();
 
                 lvTrailer.getLayoutParams().height = size * height;
@@ -370,13 +412,13 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
     }
 
 
-    public class ReviewAsyncTask extends AsyncTask<Void,Void,ReviewContainer> {
+    public class ReviewAsyncTask extends AsyncTask<Void, Void, ReviewContainer> {
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             mReviewProgressBar.setVisibility(View.VISIBLE);
-            lvReview.setVisibility(View.INVISIBLE);
+            lvReview.setVisibility(View.GONE);
         }
 
         @Override
@@ -390,7 +432,7 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
             if (data != null) {
                 reviewList = data.getResults();
                 reviewAdapter.setData(data);
-                mReviewProgressBar.setVisibility(View.INVISIBLE);
+                mReviewProgressBar.setVisibility(View.GONE);
                 lvReview.setVisibility(View.VISIBLE);
 
             }

@@ -1,6 +1,7 @@
 package com.udacity.popularmovies;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -80,6 +81,10 @@ public class TrailerAdapter extends ArrayAdapter<Video> {
             public void onClick(View v) {
                 Toast.makeText(context,"Clicked trailer : "+viewHolder.url
                         ,Toast.LENGTH_LONG).show();
+                /*
+                Intent intent = YouTubeStandalonePlayer.createVideoIntent(context, BuildConfig.YOUTUBE_API_KEY, viewHolder.url);
+                startActivity(intent);
+                */
             }
         });
 

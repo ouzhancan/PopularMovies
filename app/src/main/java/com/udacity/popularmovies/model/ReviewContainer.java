@@ -1,10 +1,11 @@
 package com.udacity.popularmovies.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ReviewContainer {
     String id;
-    List<Review> results;
+    ArrayList<Review> results;
 
     public String getId() {
         return id;
@@ -14,11 +15,11 @@ public class ReviewContainer {
         this.id = id;
     }
 
-    public List<Review> getResults() {
+    public ArrayList<Review> getResults() {
         return results;
     }
 
-    public void setResults(List<Review> results) {
+    public void setResults(ArrayList<Review> results) {
         this.results = results;
     }
 }

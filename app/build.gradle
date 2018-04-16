@@ -26,6 +26,7 @@ android {
     // store api key in gradle.properties helper link is above.
     buildTypes.each {
         it.buildConfigField 'String', 'MOVIE_DB_API_KEY', api_key
+        it.buildConfigField 'String', 'YOUTUBE_API_KEY', youtube_api_key
     }
 
     repositories {

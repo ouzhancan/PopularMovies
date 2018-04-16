@@ -9,372 +9,380 @@
     android:padding="@dimen/detail_frame_padding"
     tools:context=".DetailActivity">
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/cl_detail_container"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:weightSum="12"
+        android:orientation="vertical">
 
-        <ProgressBar
-            android:id="@+id/pb_detail"
-            android:layout_width="@dimen/progress_bar_width"
-            android:layout_height="@dimen/progress_bar_height"
-            android:elevation="@dimen/progress_bar_translationZ"
-            android:translationZ="@dimen/progress_bar_translationZ"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/iv_detail_backdrop"
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/cl_detail_container"
+            android:layout_weight="6"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/detail_backdrop_height"
-            android:contentDescription="@string/backdrop_content_desc"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/iv_detail_poster"
-            android:layout_width="@dimen/detail_poster_width"
-            android:layout_height="@dimen/detail_poster_height"
-            android:layout_marginTop="@dimen/detail_views_default_margin"
-            android:contentDescription="@string/thumbnail_content_desc"
-            app:layout_constraintLeft_toLeftOf="@id/iv_detail_backdrop"
-            app:layout_constraintTop_toBottomOf="@id/iv_detail_backdrop" />
+            <ProgressBar
+                android:id="@+id/pb_detail"
+                android:layout_width="@dimen/progress_bar_width"
+                android:layout_height="@dimen/progress_bar_height"
+                android:elevation="@dimen/progress_bar_translationZ"
+                android:translationZ="@dimen/progress_bar_translationZ"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Movie title -->
-        <TextView
-            android:id="@+id/tv_detail_title_desc"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/detail_views_little_margin"
-            android:layout_marginStart="@dimen/detail_views_little_margin"
-            android:gravity="left"
-            android:text="@string/detail_title"
-            android:textSize="@dimen/movie_detail_desc_text_size"
-            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
-            app:layout_constraintLeft_toRightOf="@+id/iv_detail_poster"
-            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
-            app:layout_constraintStart_toEndOf="@+id/iv_detail_poster"
-            app:layout_constraintTop_toTopOf="@id/iv_detail_poster" />
+            <ImageView
+                android:id="@+id/iv_detail_backdrop"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/detail_backdrop_height"
+                android:contentDescription="@string/backdrop_content_desc"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_detail_title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="top"
-            android:textSize="@dimen/movie_detail_title_size"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
-            app:layout_constraintLeft_toLeftOf="@id/tv_detail_title_desc"
-            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
-            app:layout_constraintStart_toStartOf="@+id/tv_detail_title_desc"
-            app:layout_constraintTop_toBottomOf="@+id/tv_detail_title_desc"
-            tools:text="@string/detail_title_tools" />
+            <ImageView
+                android:id="@+id/iv_detail_poster"
+                android:layout_width="@dimen/detail_poster_width"
+                android:layout_height="@dimen/detail_poster_height"
+                android:layout_marginTop="@dimen/detail_views_default_margin"
+                android:contentDescription="@string/thumbnail_content_desc"
+                app:layout_constraintLeft_toLeftOf="@id/iv_detail_backdrop"
+                app:layout_constraintTop_toBottomOf="@id/iv_detail_backdrop" />
+
+            <!-- Movie title -->
+            <TextView
+                android:id="@+id/tv_detail_title_desc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/detail_views_little_margin"
+                android:layout_marginStart="@dimen/detail_views_little_margin"
+                android:gravity="left"
+                android:text="@string/detail_title"
+                android:textSize="@dimen/movie_detail_desc_text_size"
+                app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+                app:layout_constraintLeft_toRightOf="@+id/iv_detail_poster"
+                app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+                app:layout_constraintStart_toEndOf="@+id/iv_detail_poster"
+                app:layout_constraintTop_toTopOf="@id/iv_detail_poster" />
+
+            <TextView
+                android:id="@+id/tv_detail_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:textSize="@dimen/movie_detail_title_size"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+                app:layout_constraintLeft_toLeftOf="@id/tv_detail_title_desc"
+                app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+                app:layout_constraintStart_toStartOf="@+id/tv_detail_title_desc"
+                app:layout_constraintTop_toBottomOf="@+id/tv_detail_title_desc"
+                tools:text="@string/detail_title_tools" />
 
 
-        <!-- Tagline -->
-        <TextView
-            android:id="@+id/tv_detail_tagline_desc"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/detail_views_little_margin"
-            android:layout_marginStart="@dimen/detail_views_little_margin"
-            android:layout_marginTop="@dimen/detail_views_little_margin"
-            android:gravity="left"
-            android:padding="@dimen/detail_views_little_padding"
-            android:text="@string/detail_tagline"
-            android:textSize="@dimen/movie_detail_desc_text_size"
-            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
-            app:layout_constraintLeft_toRightOf="@+id/iv_detail_poster"
-            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
-            app:layout_constraintStart_toEndOf="@+id/iv_detail_poster"
-            app:layout_constraintTop_toBottomOf="@id/tv_detail_title" />
+            <!-- Tagline -->
+            <TextView
+                android:id="@+id/tv_detail_tagline_desc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/detail_views_little_margin"
+                android:layout_marginStart="@dimen/detail_views_little_margin"
+                android:layout_marginTop="@dimen/detail_views_little_margin"
+                android:gravity="left"
+                android:padding="@dimen/detail_views_little_padding"
+                android:text="@string/detail_tagline"
+                android:textSize="@dimen/movie_detail_desc_text_size"
+                app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+                app:layout_constraintLeft_toRightOf="@+id/iv_detail_poster"
+                app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+                app:layout_constraintStart_toEndOf="@+id/iv_detail_poster"
+                app:layout_constraintTop_toBottomOf="@id/tv_detail_title" />
 
-        <TextView
-            android:id="@+id/tv_detail_tagline"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/movie_detail_text_size"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
-            app:layout_constraintLeft_toLeftOf="@id/tv_detail_tagline_desc"
-            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
-            app:layout_constraintStart_toStartOf="@+id/tv_detail_tagline_desc"
-            app:layout_constraintTop_toBottomOf="@+id/tv_detail_tagline_desc"
-            tools:text="@string/detail_tagline_tools" />
+            <TextView
+                android:id="@+id/tv_detail_tagline"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/movie_detail_text_size"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+                app:layout_constraintLeft_toLeftOf="@id/tv_detail_tagline_desc"
+                app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+                app:layout_constraintStart_toStartOf="@+id/tv_detail_tagline_desc"
+                app:layout_constraintTop_toBottomOf="@+id/tv_detail_tagline_desc"
+                tools:text="@string/detail_tagline_tools" />
 
-        <!-- Genres -->
-        <TextView
-            android:id="@+id/tv_detail_genres_desc"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/detail_views_little_margin"
-            android:layout_marginStart="@dimen/detail_views_little_margin"
-            android:layout_marginTop="@dimen/detail_views_little_margin"
-            android:gravity="left"
-            android:padding="@dimen/detail_views_little_padding"
-            android:text="@string/detail_genres"
-            android:textSize="@dimen/movie_detail_desc_text_size"
-            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
-            app:layout_constraintLeft_toRightOf="@+id/iv_detail_poster"
-            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
-            app:layout_constraintStart_toEndOf="@+id/iv_detail_poster"
-            app:layout_constraintTop_toBottomOf="@id/tv_detail_tagline" />
+            <!-- Genres -->
+            <TextView
+                android:id="@+id/tv_detail_genres_desc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/detail_views_little_margin"
+                android:layout_marginStart="@dimen/detail_views_little_margin"
+                android:layout_marginTop="@dimen/detail_views_little_margin"
+                android:gravity="left"
+                android:padding="@dimen/detail_views_little_padding"
+                android:text="@string/detail_genres"
+                android:textSize="@dimen/movie_detail_desc_text_size"
+                app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+                app:layout_constraintLeft_toRightOf="@+id/iv_detail_poster"
+                app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+                app:layout_constraintStart_toEndOf="@+id/iv_detail_poster"
+                app:layout_constraintTop_toBottomOf="@id/tv_detail_tagline" />
 
-        <TextView
-            android:id="@+id/tv_detail_genres"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/movie_detail_text_size"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
-            app:layout_constraintLeft_toLeftOf="@id/tv_detail_genres_desc"
-            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
-            app:layout_constraintStart_toStartOf="@+id/tv_detail_genres_desc"
-            app:layout_constraintTop_toBottomOf="@+id/tv_detail_genres_desc"
-            tools:text="@string/detail_genres_tools" />
+            <TextView
+                android:id="@+id/tv_detail_genres"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/movie_detail_text_size"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+                app:layout_constraintLeft_toLeftOf="@id/tv_detail_genres_desc"
+                app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+                app:layout_constraintStart_toStartOf="@+id/tv_detail_genres_desc"
+                app:layout_constraintTop_toBottomOf="@+id/tv_detail_genres_desc"
+                tools:text="@string/detail_genres_tools" />
 
-        <!-- Vote Average / Vote Count  -->
-        <TextView
-            android:id="@+id/tv_detail_vote_desc"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/detail_views_little_margin"
-            android:layout_marginStart="@dimen/detail_views_little_margin"
-            android:layout_marginTop="@dimen/detail_views_little_margin"
-            android:gravity="left"
-            android:padding="@dimen/detail_views_little_padding"
-            android:text="@string/detail_vote"
-            android:textSize="@dimen/movie_detail_desc_text_size"
-            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
-            app:layout_constraintLeft_toRightOf="@+id/iv_detail_poster"
-            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
-            app:layout_constraintStart_toEndOf="@+id/iv_detail_poster"
-            app:layout_constraintTop_toBottomOf="@id/tv_detail_genres" />
+            <!-- Vote Average / Vote Count  -->
+            <TextView
+                android:id="@+id/tv_detail_vote_desc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/detail_views_little_margin"
+                android:layout_marginStart="@dimen/detail_views_little_margin"
+                android:layout_marginTop="@dimen/detail_views_little_margin"
+                android:gravity="left"
+                android:padding="@dimen/detail_views_little_padding"
+                android:text="@string/detail_vote"
+                android:textSize="@dimen/movie_detail_desc_text_size"
+                app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+                app:layout_constraintLeft_toRightOf="@+id/iv_detail_poster"
+                app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+                app:layout_constraintStart_toEndOf="@+id/iv_detail_poster"
+                app:layout_constraintTop_toBottomOf="@id/tv_detail_genres" />
 
-        <TextView
-            android:id="@+id/tv_detail_vote"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/movie_detail_text_size"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
-            app:layout_constraintLeft_toLeftOf="@id/tv_detail_vote_desc"
-            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
-            app:layout_constraintStart_toStartOf="@+id/tv_detail_vote_desc"
-            app:layout_constraintTop_toBottomOf="@+id/tv_detail_vote_desc"
-            tools:text="@string/detail_vote_tools" />
+            <TextView
+                android:id="@+id/tv_detail_vote"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/movie_detail_text_size"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+                app:layout_constraintLeft_toLeftOf="@id/tv_detail_vote_desc"
+                app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+                app:layout_constraintStart_toStartOf="@+id/tv_detail_vote_desc"
+                app:layout_constraintTop_toBottomOf="@+id/tv_detail_vote_desc"
+                tools:text="@string/detail_vote_tools" />
 
-        <!-- Add / Remove Favorite -->
-        <Button
-            android:id="@+id/btn_add_remove_favorites"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/detail_views_little_margin"
-            android:layout_marginStart="@dimen/detail_views_little_margin"
-            android:layout_marginTop="@dimen/detail_views_little_margin"
-            android:background="@color/add_favorite_color"
-            android:padding="@dimen/detail_views_padding"
-            android:text="@string/add_favorite"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/movie_detail_text_size"
-            app:layout_constraintEnd_toEndOf="@id/iv_detail_poster"
-            app:layout_constraintLeft_toLeftOf="@+id/iv_detail_poster"
-            app:layout_constraintRight_toRightOf="@id/iv_detail_poster"
-            app:layout_constraintStart_toStartOf="@+id/iv_detail_poster"
-            app:layout_constraintTop_toBottomOf="@id/iv_detail_poster" />
+            <!-- Add / Remove Favorite -->
+            <Button
+                android:id="@+id/btn_add_remove_favorites"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/detail_views_little_margin"
+                android:layout_marginStart="@dimen/detail_views_little_margin"
+                android:layout_marginTop="@dimen/detail_views_little_margin"
+                android:background="@color/add_favorite_color"
+                android:padding="@dimen/detail_views_padding"
+                android:text="@string/add_favorite"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/movie_detail_text_size"
+                app:layout_constraintEnd_toEndOf="@id/iv_detail_poster"
+                app:layout_constraintLeft_toLeftOf="@+id/iv_detail_poster"
+                app:layout_constraintRight_toRightOf="@id/iv_detail_poster"
+                app:layout_constraintStart_toStartOf="@+id/iv_detail_poster"
+                app:layout_constraintTop_toBottomOf="@id/iv_detail_poster" />
 
-        <!-- Release Date -->
-        <TextView
-            android:id="@+id/tv_detail_release_date_desc"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/detail_views_little_margin"
-            android:layout_marginStart="@dimen/detail_views_little_margin"
-            android:layout_marginTop="@dimen/detail_views_little_margin"
-            android:gravity="left"
-            android:padding="@dimen/detail_views_little_padding"
-            android:text="@string/detail_release_date"
-            android:textSize="@dimen/movie_detail_desc_text_size"
-            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
-            app:layout_constraintLeft_toRightOf="@id/btn_add_remove_favorites"
-            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
-            app:layout_constraintStart_toEndOf="@id/btn_add_remove_favorites"
-            app:layout_constraintTop_toBottomOf="@id/iv_detail_poster" />
+            <!-- Release Date -->
+            <TextView
+                android:id="@+id/tv_detail_release_date_desc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/detail_views_little_margin"
+                android:layout_marginStart="@dimen/detail_views_little_margin"
+                android:layout_marginTop="@dimen/detail_views_little_margin"
+                android:gravity="left"
+                android:padding="@dimen/detail_views_little_padding"
+                android:text="@string/detail_release_date"
+                android:textSize="@dimen/movie_detail_desc_text_size"
+                app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+                app:layout_constraintLeft_toRightOf="@id/btn_add_remove_favorites"
+                app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+                app:layout_constraintStart_toEndOf="@id/btn_add_remove_favorites"
+                app:layout_constraintTop_toBottomOf="@id/iv_detail_poster" />
 
-        <TextView
-            android:id="@+id/tv_detail_release_date"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/detail_views_little_margin"
-            android:layout_marginStart="@dimen/detail_views_little_margin"
-            android:textSize="@dimen/movie_detail_text_size"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
-            app:layout_constraintLeft_toRightOf="@id/btn_add_remove_favorites"
-            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
-            app:layout_constraintStart_toEndOf="@id/btn_add_remove_favorites"
-            app:layout_constraintTop_toBottomOf="@+id/tv_detail_release_date_desc"
-            tools:text="@string/detail_release_date_tools" />
+            <TextView
+                android:id="@+id/tv_detail_release_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/detail_views_little_margin"
+                android:layout_marginStart="@dimen/detail_views_little_margin"
+                android:textSize="@dimen/movie_detail_text_size"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+                app:layout_constraintLeft_toRightOf="@id/btn_add_remove_favorites"
+                app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+                app:layout_constraintStart_toEndOf="@id/btn_add_remove_favorites"
+                app:layout_constraintTop_toBottomOf="@+id/tv_detail_release_date_desc"
+                tools:text="@string/detail_release_date_tools" />
 
-        <!-- Homepage -->
-        <TextView
-            android:id="@+id/tv_detail_homepage_desc"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/detail_views_little_margin"
-            android:layout_marginStart="@dimen/detail_views_little_margin"
-            android:layout_marginTop="@dimen/detail_views_little_margin"
-            android:gravity="left"
-            android:padding="@dimen/detail_views_little_padding"
-            android:text="@string/detail_homepage"
-            android:textSize="@dimen/movie_detail_desc_text_size"
-            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
-            app:layout_constraintLeft_toLeftOf="@+id/iv_detail_poster"
-            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
-            app:layout_constraintStart_toStartOf="@+id/iv_detail_poster"
-            app:layout_constraintTop_toBottomOf="@id/btn_add_remove_favorites" />
+            <!-- Homepage -->
+            <TextView
+                android:id="@+id/tv_detail_homepage_desc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/detail_views_little_margin"
+                android:layout_marginStart="@dimen/detail_views_little_margin"
+                android:layout_marginTop="@dimen/detail_views_little_margin"
+                android:gravity="left"
+                android:padding="@dimen/detail_views_little_padding"
+                android:text="@string/detail_homepage"
+                android:textSize="@dimen/movie_detail_desc_text_size"
+                app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+                app:layout_constraintLeft_toLeftOf="@+id/iv_detail_poster"
+                app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+                app:layout_constraintStart_toStartOf="@+id/iv_detail_poster"
+                app:layout_constraintTop_toBottomOf="@id/btn_add_remove_favorites" />
 
-        <TextView
-            android:id="@+id/tv_detail_homepage"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:autoLink="web"
-            android:textSize="@dimen/movie_detail_text_size"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
-            app:layout_constraintLeft_toLeftOf="@id/tv_detail_homepage_desc"
-            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
-            app:layout_constraintStart_toStartOf="@+id/tv_detail_homepage_desc"
-            app:layout_constraintTop_toBottomOf="@+id/tv_detail_homepage_desc"
-            tools:text="@string/detail_homepage_tools" />
+            <TextView
+                android:id="@+id/tv_detail_homepage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:autoLink="web"
+                android:textSize="@dimen/movie_detail_text_size"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+                app:layout_constraintLeft_toLeftOf="@id/tv_detail_homepage_desc"
+                app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+                app:layout_constraintStart_toStartOf="@+id/tv_detail_homepage_desc"
+                app:layout_constraintTop_toBottomOf="@+id/tv_detail_homepage_desc"
+                tools:text="@string/detail_homepage_tools" />
 
-        <!-- IMDB -->
-        <TextView
-            android:id="@+id/tv_detail_imdb_desc"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/detail_views_little_margin"
-            android:layout_marginStart="@dimen/detail_views_little_margin"
-            android:layout_marginTop="@dimen/detail_views_little_margin"
-            android:gravity="left"
-            android:padding="@dimen/detail_views_little_padding"
-            android:text="@string/detail_imdb_id"
-            android:textSize="@dimen/movie_detail_desc_text_size"
-            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
-            app:layout_constraintLeft_toLeftOf="@+id/iv_detail_poster"
-            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
-            app:layout_constraintStart_toStartOf="@+id/iv_detail_poster"
-            app:layout_constraintTop_toBottomOf="@id/tv_detail_homepage" />
+            <!-- IMDB -->
+            <TextView
+                android:id="@+id/tv_detail_imdb_desc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/detail_views_little_margin"
+                android:layout_marginStart="@dimen/detail_views_little_margin"
+                android:layout_marginTop="@dimen/detail_views_little_margin"
+                android:gravity="left"
+                android:padding="@dimen/detail_views_little_padding"
+                android:text="@string/detail_imdb_id"
+                android:textSize="@dimen/movie_detail_desc_text_size"
+                app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+                app:layout_constraintLeft_toLeftOf="@+id/iv_detail_poster"
+                app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+                app:layout_constraintStart_toStartOf="@+id/iv_detail_poster"
+                app:layout_constraintTop_toBottomOf="@id/tv_detail_homepage" />
 
-        <TextView
-            android:id="@+id/tv_detail_imdb"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:autoLink="web"
-            android:textSize="@dimen/movie_detail_text_size"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
-            app:layout_constraintLeft_toLeftOf="@id/tv_detail_imdb_desc"
-            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
-            app:layout_constraintStart_toStartOf="@+id/tv_detail_imdb_desc"
-            app:layout_constraintTop_toBottomOf="@+id/tv_detail_imdb_desc"
-            tools:text="@string/detail_imdb_id_tools" />
+            <TextView
+                android:id="@+id/tv_detail_imdb"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:autoLink="web"
+                android:textSize="@dimen/movie_detail_text_size"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+                app:layout_constraintLeft_toLeftOf="@id/tv_detail_imdb_desc"
+                app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+                app:layout_constraintStart_toStartOf="@+id/tv_detail_imdb_desc"
+                app:layout_constraintTop_toBottomOf="@+id/tv_detail_imdb_desc"
+                tools:text="@string/detail_imdb_id_tools" />
 
-        <!-- Overview -->
-        <TextView
-            android:id="@+id/tv_detail_overview_desc"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/detail_views_little_margin"
-            android:layout_marginStart="@dimen/detail_views_little_margin"
-            android:layout_marginTop="@dimen/detail_views_little_margin"
-            android:gravity="left"
-            android:padding="@dimen/detail_views_little_padding"
-            android:text="@string/detail_overview"
-            android:textSize="@dimen/movie_detail_desc_text_size"
-            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
-            app:layout_constraintLeft_toLeftOf="@+id/iv_detail_poster"
-            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
-            app:layout_constraintStart_toStartOf="@+id/iv_detail_poster"
-            app:layout_constraintTop_toBottomOf="@id/tv_detail_imdb" />
+            <!-- Overview -->
+            <TextView
+                android:id="@+id/tv_detail_overview_desc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/detail_views_little_margin"
+                android:layout_marginStart="@dimen/detail_views_little_margin"
+                android:layout_marginTop="@dimen/detail_views_little_margin"
+                android:gravity="left"
+                android:padding="@dimen/detail_views_little_padding"
+                android:text="@string/detail_overview"
+                android:textSize="@dimen/movie_detail_desc_text_size"
+                app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+                app:layout_constraintLeft_toLeftOf="@+id/iv_detail_poster"
+                app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+                app:layout_constraintStart_toStartOf="@+id/iv_detail_poster"
+                app:layout_constraintTop_toBottomOf="@id/tv_detail_imdb" />
 
-        <TextView
-            android:id="@+id/tv_detail_overview"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/movie_detail_text_size"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
-            app:layout_constraintLeft_toLeftOf="@id/tv_detail_overview_desc"
-            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
-            app:layout_constraintStart_toStartOf="@+id/tv_detail_overview_desc"
-            app:layout_constraintTop_toBottomOf="@+id/tv_detail_overview_desc"
-            tools:text="@string/detail_overview_tools" />
+            <TextView
+                android:id="@+id/tv_detail_overview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/movie_detail_text_size"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+                app:layout_constraintLeft_toLeftOf="@id/tv_detail_overview_desc"
+                app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+                app:layout_constraintStart_toStartOf="@+id/tv_detail_overview_desc"
+                app:layout_constraintTop_toBottomOf="@+id/tv_detail_overview_desc"
+                tools:text="@string/detail_overview_tools" />
 
-        <!-- Divider -->
-        <View
-            android:id="@+id/v_divider"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="@dimen/detail_views_little_margin"
-            android:layout_marginStart="@dimen/detail_views_little_margin"
-            android:layout_marginTop="@dimen/detail_views_little_margin"
-            android:background="@android:color/darker_gray"
-            android:padding="@dimen/detail_views_little_padding"
-            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
-            app:layout_constraintLeft_toLeftOf="@id/tv_detail_overview"
-            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
-            app:layout_constraintStart_toStartOf="@+id/tv_detail_overview"
-            app:layout_constraintTop_toBottomOf="@+id/tv_detail_overview" />
+            <!-- Divider -->
+            <View
+                android:id="@+id/v_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="@dimen/detail_views_little_margin"
+                android:layout_marginStart="@dimen/detail_views_little_margin"
+                android:layout_marginTop="@dimen/detail_views_little_margin"
+                android:background="@android:color/darker_gray"
+                android:padding="@dimen/detail_views_little_padding"
+                app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
+                app:layout_constraintLeft_toLeftOf="@id/tv_detail_overview"
+                app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
+                app:layout_constraintStart_toStartOf="@+id/tv_detail_overview"
+                app:layout_constraintTop_toBottomOf="@+id/tv_detail_overview" />
 
+
+        </android.support.constraint.ConstraintLayout>
 
         <!-- Videos section -->
-
-        <TextView
-            android:id="@+id/tv_detail_trail_desc"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/detail_views_little_margin"
-            android:layout_marginStart="@dimen/detail_views_little_margin"
-            android:layout_marginTop="@dimen/detail_views_little_margin"
-            android:gravity="left"
-            android:padding="@dimen/detail_views_little_padding"
-            android:text="@string/detail_trailer"
-            android:textSize="@dimen/movie_detail_text_size"
-            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
-            app:layout_constraintLeft_toLeftOf="@+id/iv_detail_poster"
-            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
-            app:layout_constraintStart_toStartOf="@+id/iv_detail_poster"
-            app:layout_constraintTop_toBottomOf="@id/v_divider" />
-
-        <ProgressBar
-            android:id="@+id/pb_trailer"
-            android:layout_width="@dimen/progress_bar_width"
-            android:layout_height="@dimen/progress_bar_height"
-            android:elevation="@dimen/progress_bar_translationZ"
-            android:translationZ="@dimen/progress_bar_translationZ"
-            android:visibility="invisible"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_detail_trail_desc" />
-
-        <ListView
-            android:id="@+id/lv_trail_videos"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/detail_views_little_margin"
-            android:layout_marginStart="@dimen/detail_views_little_margin"
-            android:layout_marginTop="@dimen/detail_views_little_margin"
-            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
-            app:layout_constraintLeft_toLeftOf="@+id/iv_detail_poster"
-            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
-            app:layout_constraintStart_toStartOf="@+id/iv_detail_poster"
-            app:layout_constraintTop_toBottomOf="@id/tv_detail_trail_desc" />
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:orientation="vertical"
+            android:scrollbars="vertical"
+            android:weightSum="10">
 
+            <TextView
+                android:id="@+id/tv_detail_trail_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/detail_views_little_margin"
+                android:layout_marginStart="@dimen/detail_views_little_margin"
+                android:layout_marginTop="@dimen/detail_views_little_margin"
+                android:gravity="left"
+                android:padding="@dimen/detail_views_little_padding"
+                android:text="@string/detail_trailer"
+                android:textSize="@dimen/movie_detail_text_size" />
+
+            <ProgressBar
+                android:id="@+id/pb_trailer"
+                android:layout_weight="3"
+                android:layout_width="@dimen/progress_bar_width"
+                android:layout_height="@dimen/progress_bar_height"
+                android:layout_gravity="center_horizontal"
+                android:elevation="@dimen/progress_bar_translationZ"
+                android:translationZ="@dimen/progress_bar_translationZ"
+                android:visibility="visible" />
+
+            <ListView
+                android:id="@+id/lv_trail_videos"
+                android:layout_width="match_parent"
+                android:layout_weight="4"
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/detail_views_little_margin"
+                android:scrollbars="vertical"
+                />
+
+        </LinearLayout>
 
         <!-- Divider -->
         <View
@@ -385,72 +393,61 @@
             android:layout_marginStart="@dimen/detail_views_little_margin"
             android:layout_marginTop="@dimen/detail_views_little_margin"
             android:background="@android:color/darker_gray"
-            android:padding="@dimen/detail_views_little_padding"
-            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
-            app:layout_constraintLeft_toLeftOf="@id/tv_detail_overview"
-            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
-            app:layout_constraintStart_toStartOf="@+id/tv_detail_overview"
-            app:layout_constraintTop_toBottomOf="@+id/lv_trail_videos" />
+            android:padding="@dimen/detail_views_little_padding" />
 
         <!-- Review section -->
-
-        <TextView
-            android:id="@+id/tv_detail_review_desc"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/detail_views_little_margin"
-            android:layout_marginStart="@dimen/detail_views_little_margin"
-            android:layout_marginTop="@dimen/detail_views_little_margin"
-            android:gravity="left"
-            android:padding="@dimen/detail_views_little_padding"
-            android:text="@string/detail_review"
-            android:textSize="@dimen/movie_detail_text_size"
-            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
-            app:layout_constraintLeft_toLeftOf="@+id/iv_detail_poster"
-            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
-            app:layout_constraintStart_toStartOf="@+id/iv_detail_poster"
-            app:layout_constraintTop_toBottomOf="@id/v_divider2" />
-
-        <ProgressBar
-            android:id="@+id/pb_review"
-            android:layout_width="@dimen/progress_bar_width"
-            android:layout_height="@dimen/progress_bar_height"
-            android:elevation="@dimen/progress_bar_translationZ"
-            android:translationZ="@dimen/progress_bar_translationZ"
-            android:visibility="invisible"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_detail_review_desc" />
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:elevation="@dimen/scroll_layout_elevation"
+            android:translationZ="@dimen/scroll_layout_elevation"
             android:orientation="vertical"
-            android:layout_marginLeft="@dimen/detail_views_little_margin"
-            android:layout_marginStart="@dimen/detail_views_little_margin"
-            android:layout_marginTop="@dimen/detail_views_little_margin"
-            app:layout_constraintEnd_toEndOf="@+id/iv_detail_backdrop"
-            app:layout_constraintLeft_toLeftOf="@+id/iv_detail_poster"
-            app:layout_constraintRight_toRightOf="@+id/iv_detail_backdrop"
-            app:layout_constraintStart_toStartOf="@+id/iv_detail_poster"
-            app:layout_constraintTop_toBottomOf="@id/tv_detail_review_desc"
-            >
+            android:scrollbars="vertical">
+
+            <TextView
+                android:id="@+id/tv_detail_review_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/detail_views_little_margin"
+                android:layout_marginStart="@dimen/detail_views_little_margin"
+                android:layout_marginTop="@dimen/detail_views_little_margin"
+                android:gravity="left"
+                android:padding="@dimen/detail_views_little_padding"
+                android:text="@string/detail_review"
+                android:textSize="@dimen/movie_detail_text_size" />
+
+            <ProgressBar
+                android:id="@+id/pb_review"
+                android:layout_width="@dimen/progress_bar_width"
+                android:layout_height="@dimen/progress_bar_height"
+                android:layout_gravity="center_horizontal"
+                android:elevation="@dimen/progress_bar_translationZ"
+                android:translationZ="@dimen/progress_bar_translationZ"
+                android:visibility="visible" />
 
             <ListView
                 android:id="@+id/lv_review"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                 />
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/detail_views_little_margin"
+                android:scrollbars="vertical" />
 
             <TextView
-                android:id="@+id/tv_read_more_review"
+                android:id="@+id/tv_more_review"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                />
+                android:layout_marginLeft="@dimen/detail_views_little_margin"
+                android:layout_marginStart="@dimen/detail_views_little_margin"
+                android:layout_marginTop="@dimen/detail_views_little_margin"
+                android:gravity="end"
+                android:padding="@dimen/detail_views_little_padding"
+                android:text="@string/more_review"
+                android:textSize="@dimen/movie_detail_title_size" />
+
         </LinearLayout>
 
+    </LinearLayout>
 
-    </android.support.constraint.ConstraintLayout>
 
 </ScrollView>

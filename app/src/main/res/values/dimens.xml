@@ -83,5 +83,7 @@
     <dimen name="review_author_text_size">10sp</dimen>
     <!-- review video dimens -->
 
+    <dimen name="scroll_layout_elevation">10dp</dimen>
+
 </resources>
 

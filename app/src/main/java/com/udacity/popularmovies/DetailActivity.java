@@ -1,10 +1,12 @@
 package com.udacity.popularmovies;
 
+import android.Manifest;
+import android.accounts.AccountManager;
+import android.app.Dialog;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.app.NavUtils;
@@ -15,20 +17,31 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.api.client.extensions.android.http.AndroidHttp;
+import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
+import com.google.api.client.googleapis.extensions.android.gms.auth.GooglePlayServicesAvailabilityIOException;
+import com.google.api.client.googleapis.extensions.android.gms.auth.UserRecoverableAuthIOException;
+import com.google.api.client.http.HttpTransport;
+import com.google.api.client.json.JsonFactory;
+import com.google.api.client.json.jackson2.JacksonFactory;
+import com.google.api.client.util.ExponentialBackOff;
+import com.google.api.services.youtube.YouTubeScopes;
+import com.google.api.services.youtube.model.Channel;
+import com.google.api.services.youtube.model.ChannelListResponse;
 import com.squareup.picasso.Picasso;
-import com.udacity.popularmovies.data.MovieDbContract;
 import com.udacity.popularmovies.data.MovieDbHelper;
 import com.udacity.popularmovies.model.Movie;
 import com.udacity.popularmovies.model.Review;
@@ -38,16 +51,18 @@ import com.udacity.popularmovies.model.VideoContainer;
 import com.udacity.popularmovies.utilities.DbUtil;
 import com.udacity.popularmovies.utilities.NetworkUtil;
 
-import java.io.FileDescriptor;
-import java.io.PrintWriter;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
-public class DetailActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Movie> {
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.EasyPermissions;
 
+public class DetailActivity extends AppCompatActivity
+        implements LoaderManager.LoaderCallbacks<Movie> {
 
     private static final int LOADER_ID = 640;
 
@@ -135,14 +150,14 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
         } else {
             showErrorMessage(getString(R.string.error_message));
         }
-
     }
+
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
 
-        outState.putString("movie_id",movie_id);
-        outState.putString("genres",genres);
+        outState.putString("movie_id", movie_id);
+        outState.putString("genres", genres);
 
         super.onSaveInstanceState(outState);
     }
@@ -151,7 +166,7 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
     public boolean onOptionsItemSelected(MenuItem item) {
 
 
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home:
                 NavUtils.navigateUpFromSameTask(this);
                 return true;

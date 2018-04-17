@@ -81,10 +81,10 @@ public class TrailerAdapter extends ArrayAdapter<Video> {
             public void onClick(View v) {
                 Toast.makeText(context,"Clicked trailer : "+viewHolder.url
                         ,Toast.LENGTH_LONG).show();
-                /*
-                Intent intent = YouTubeStandalonePlayer.createVideoIntent(context, BuildConfig.YOUTUBE_API_KEY, viewHolder.url);
-                startActivity(intent);
-                */
+
+                Intent intent = new Intent(context,PlayVideoActivity.class);
+                context.startActivity(intent);
+
             }
         });
 

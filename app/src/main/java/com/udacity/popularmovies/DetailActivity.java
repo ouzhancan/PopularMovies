@@ -1,23 +1,17 @@
 package com.udacity.popularmovies;
 
-import android.Manifest;
-import android.accounts.AccountManager;
-import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
-import android.support.annotation.NonNull;
+import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.app.NavUtils;
 import android.support.v4.content.AsyncTaskLoader;
-import android.content.Context;
 import android.support.v4.content.Loader;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,19 +22,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.api.client.extensions.android.http.AndroidHttp;
-import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
-import com.google.api.client.googleapis.extensions.android.gms.auth.GooglePlayServicesAvailabilityIOException;
-import com.google.api.client.googleapis.extensions.android.gms.auth.UserRecoverableAuthIOException;
-import com.google.api.client.http.HttpTransport;
-import com.google.api.client.json.JsonFactory;
-import com.google.api.client.json.jackson2.JacksonFactory;
-import com.google.api.client.util.ExponentialBackOff;
-import com.google.api.services.youtube.YouTubeScopes;
-import com.google.api.services.youtube.model.Channel;
-import com.google.api.services.youtube.model.ChannelListResponse;
 import com.squareup.picasso.Picasso;
 import com.udacity.popularmovies.data.MovieDbHelper;
 import com.udacity.popularmovies.model.Movie;
@@ -51,15 +32,10 @@ import com.udacity.popularmovies.model.VideoContainer;
 import com.udacity.popularmovies.utilities.DbUtil;
 import com.udacity.popularmovies.utilities.NetworkUtil;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
-
-import pub.devrel.easypermissions.AfterPermissionGranted;
-import pub.devrel.easypermissions.EasyPermissions;
 
 public class DetailActivity extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<Movie> {
@@ -78,6 +54,7 @@ public class DetailActivity extends AppCompatActivity
     Movie selectedMovie;
     String movie_id;
     String genres;
+    String selectedOption;
 
     // view objects //
     ConstraintLayout mConstraintContainer;
@@ -111,6 +88,7 @@ public class DetailActivity extends AppCompatActivity
         if (bundle != null) {
             movie_id = bundle.getString("movie_id");
             genres = bundle.getString("genres");
+            selectedOption = bundle.getString(MainActivity.SELECTED_OPTION);
         }
 
         trailerAsyncTask = new TrailerAsyncTask();
@@ -158,6 +136,7 @@ public class DetailActivity extends AppCompatActivity
 
         outState.putString("movie_id", movie_id);
         outState.putString("genres", genres);
+        outState.putString(MainActivity.SELECTED_OPTION,selectedOption);
 
         super.onSaveInstanceState(outState);
     }
@@ -418,10 +397,12 @@ public class DetailActivity extends AppCompatActivity
                 mTrailerProgressBar.setVisibility(View.GONE);
                 lvTrailer.setVisibility(View.VISIBLE);
 
+
                 int height = (int) getResources().getDimension(R.dimen.trailer_row_height);
                 int size = videoList.size();
 
                 lvTrailer.getLayoutParams().height = size * height;
+
             }
         }
     }

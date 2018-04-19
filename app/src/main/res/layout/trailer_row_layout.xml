@@ -15,6 +15,9 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:layout_weight="2"
+        android:layout_marginTop="@dimen/detail_views_little_margin"
+        android:layout_marginBottom="@dimen/detail_views_little_margin"
+        android:layout_marginRight="@dimen/detail_views_little_margin"
         android:contentDescription="@string/trailer_play_desc"
         android:src="@drawable/ic_play_arrow" />
 
@@ -24,6 +27,9 @@
         android:layout_height="match_parent"
         android:layout_weight="8"
         android:gravity="left|center_vertical"
+        android:layout_marginTop="@dimen/detail_views_little_margin"
+        android:layout_marginBottom="@dimen/detail_views_little_margin"
+        android:layout_marginRight="@dimen/detail_views_little_margin"
         android:textSize="@dimen/movie_detail_text_size"
         android:textStyle="bold"
         tools:text=" Trailer Name" />

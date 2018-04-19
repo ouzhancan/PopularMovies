@@ -76,7 +76,7 @@
 
 
     <!-- trailer video dimens -->
-    <dimen name="trailer_row_height">40dp</dimen>
+    <dimen name="trailer_row_height">60dp</dimen>
     <!-- trailer video dimens -->
 
     <!-- review video dimens -->

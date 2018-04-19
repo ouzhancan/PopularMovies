@@ -26,7 +26,6 @@ android {
     // store api key in gradle.properties helper link is above.
     buildTypes.each {
         it.buildConfigField 'String', 'MOVIE_DB_API_KEY', api_key
-        it.buildConfigField 'String', 'YOUTUBE_API_KEY', youtube_api_key
     }
 
     repositories {
@@ -49,13 +48,5 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.android.support:cardview-v7:26.1+'
     implementation 'com.android.support:recyclerview-v7:26+'
-
-    compile 'com.google.android.gms:play-services-auth:10.2.1'
-    compile 'pub.devrel:easypermissions:0.3.0'
-    compile('com.google.api-client:google-api-client-android:1.23.0') {
-        exclude group: 'org.apache.httpcomponents'
-    }
-    compile('com.google.apis:google-api-services-youtube:v3-rev194-1.23.0') {
-        exclude group: 'org.apache.httpcomponents'
-    }
+    
 }

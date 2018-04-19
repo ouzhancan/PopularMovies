@@ -2,16 +2,24 @@ package com.udacity.popularmovies;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.v4.content.MimeTypeFilter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.udacity.popularmovies.model.Video;
 import com.udacity.popularmovies.model.VideoContainer;
+import com.udacity.popularmovies.utilities.NetworkUtil;
 
 import java.util.List;
 
@@ -39,7 +47,7 @@ public class TrailerAdapter extends ArrayAdapter<Video> {
 
     @Override
     public int getCount() {
-        return videoList==null ? 0 : videoList.size();
+        return videoList == null ? 0 : videoList.size();
     }
 
     @Override
@@ -76,15 +84,12 @@ public class TrailerAdapter extends ArrayAdapter<Video> {
         viewHolder.url = mVideo.key;
 
 
-        viewHolder.play.setOnClickListener(new View.OnClickListener() {
+        convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context,"Clicked trailer : "+viewHolder.url
-                        ,Toast.LENGTH_LONG).show();
+                Log.d("APP_DEBUG","Clicked trailer : " + viewHolder.url);
 
-                Intent intent = new Intent(context,PlayVideoActivity.class);
-                context.startActivity(intent);
-
+                startVideo(viewHolder.url);
             }
         });
 
@@ -98,6 +103,22 @@ public class TrailerAdapter extends ArrayAdapter<Video> {
         if (videoContainer != null) {
             this.videoList = videoContainer.getResults();
             notifyDataSetChanged();
+        }
+    }
+
+
+    private void startVideo(String videoID) {
+        // default youtube app
+        Intent youtubeIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + videoID));
+        List<ResolveInfo> list = context.getPackageManager().queryIntentActivities(youtubeIntent,
+                PackageManager.MATCH_DEFAULT_ONLY);
+
+        if (list.size() == 0) {
+            Intent webIntent = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("http://www.youtube.com/watch?v=" + videoID));
+            context.startActivity(webIntent);
+        }else{
+            context.startActivity(youtubeIntent);
         }
     }
 }

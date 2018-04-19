@@ -28,18 +28,15 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
     MovieContainer movieContainer;
     List<Movie> movieList;
     Boolean isLandscapeMode;
+    String selectedOption;
 
-    /*
-    public MovieAdapter(Context mContext, List<Movie> movies) {
-        this.context = mContext;
-        this.movieList = movies;
-    }
-    */
 
-    public MovieAdapter(Context mContext, List<Movie> movies, Boolean orientationMode) {
+    public MovieAdapter(Context mContext, List<Movie> movies,
+                        Boolean orientationMode,String mSelectedOption) {
         this.context = mContext;
         this.movieList = movies;
         this.isLandscapeMode = orientationMode;
+        this.selectedOption = mSelectedOption;
     }
 
     @Override
@@ -152,6 +149,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieAdapter
 
             Intent intent = new Intent(context, DetailActivity.class);
             intent.putExtra("movie_id", selectedMovie.getId());
+            intent.putExtra(MainActivity.SELECTED_OPTION,selectedOption);
 
             if (selectedMovie.getGenre_ids() != null && selectedMovie.getGenre_ids().size() > 0) {
                 intent.putExtra("genres", genresToString(selectedMovie.getGenre_ids()));

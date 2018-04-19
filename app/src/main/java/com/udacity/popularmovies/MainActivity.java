@@ -63,8 +63,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     int currentPage = 1;
     int totalPage=0;
 
-    private static final String SCREEN_MODE_KEY  = "SCREEN_MODE";
-    private static final String SELECTED_OPTION  = "SELECTED_OPTION";
+    public static final String SCREEN_MODE_KEY  = "SCREEN_MODE";
+    public static final String SELECTED_OPTION  = "SELECTED_OPTION";
 
     DbUtil dbUtil;
     MovieDbHelper movieDbHelper;
@@ -74,6 +74,13 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // default selection is getting popular movies
+        selectedOption = NetworkUtil.POPULAR_MOVIE_PATH;
+
+        // get device current orientation
+        isLandscapeMode = (getResources().getConfiguration().orientation
+                == Configuration.ORIENTATION_LANDSCAPE ? true : false);
+
         if (savedInstanceState != null) {
             isLandscapeMode = savedInstanceState.getBoolean(SCREEN_MODE_KEY);
             selectedOption = savedInstanceState.getString(SELECTED_OPTION);
@@ -82,15 +89,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         getSupportActionBar().setTitle(getString(R.string.app_name));
         getSupportActionBar().setLogo(R.drawable.ic_logo_primary_green);
 
-        // get device current orientation
-        isLandscapeMode = (getResources().getConfiguration().orientation
-                            == Configuration.ORIENTATION_LANDSCAPE ? true : false);
 
         // getting xml elements into to android view objects. //
         getViewObjects();
-
-        // default selection is getting popular movies
-        selectedOption = NetworkUtil.POPULAR_MOVIE_PATH;
 
         // grid layout for the recycler view
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
@@ -98,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         mRecyclerView.setHasFixedSize(true);
 
         // set custom adapter to recycler view
-        mMovieAdapter = new MovieAdapter(this, movies,isLandscapeMode);
+        mMovieAdapter = new MovieAdapter(this, movies,isLandscapeMode,selectedOption);
         mRecyclerView.setAdapter(mMovieAdapter);
 
         // db variables initialize
@@ -255,7 +256,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         super.onConfigurationChanged(newConfig);
         //Update the Flag here
         isLandscapeMode = (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE ? true : false);
-        mMovieAdapter = new MovieAdapter(this, movies,isLandscapeMode);
+        mMovieAdapter = new MovieAdapter(this, movies,isLandscapeMode,selectedOption);
         mRecyclerView.setAdapter(mMovieAdapter);
     }
 

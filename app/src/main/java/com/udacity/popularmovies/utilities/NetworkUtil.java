@@ -30,7 +30,7 @@ public class NetworkUtil {
     public static final String BASE_MOVIE_URL = "https://api.themoviedb.org/3/movie/";
     public static final String BASE_IMAGE_URL = "http://image.tmdb.org/t/p/";
     public static final String BASE_IMDB_MOVIE_URL  = "http://www.imdb.com/title/";
-    public static final String BASE_YOUTUBE_URL = "https://www.youtube.com/watch?v=";
+    public static final String BASE_YOUTUBE_URL = "http://www.youtube.com/watch?v=";
 
     public static final String POPULAR_MOVIE_PATH = "popular";
     public static final String TOP_RATED_MOVIE_PATH = "top_rated";
@@ -59,6 +59,27 @@ public class NetworkUtil {
     public static URL buildImageUrl(String posterPath) {
 
         Uri builtUri = Uri.parse(BASE_IMAGE_URL + IMAGE_SIZE + posterPath).buildUpon()
+                .build();
+
+        URL url = null;
+        try {
+            url = new URL(builtUri.toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        return url;
+    }
+
+
+    /**
+     * built the request link of youtube video
+     * @param videoId : youtube video id
+     * @return
+     */
+    public static URL buildVideoUrl(String videoId) {
+
+        Uri builtUri = Uri.parse(BASE_YOUTUBE_URL +videoId).buildUpon()
                 .build();
 
         URL url = null;

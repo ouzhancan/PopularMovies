@@ -344,17 +344,15 @@
         <!-- Videos section -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="3"
             android:orientation="vertical"
-            android:scrollbars="vertical"
-            android:weightSum="10">
+            android:scrollbars="vertical">
 
             <TextView
                 android:id="@+id/tv_detail_trail_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginLeft="@dimen/detail_views_little_margin"
                 android:layout_marginStart="@dimen/detail_views_little_margin"
                 android:layout_marginTop="@dimen/detail_views_little_margin"
@@ -365,7 +363,6 @@
 
             <ProgressBar
                 android:id="@+id/pb_trailer"
-                android:layout_weight="3"
                 android:layout_width="@dimen/progress_bar_width"
                 android:layout_height="@dimen/progress_bar_height"
                 android:layout_gravity="center_horizontal"
@@ -376,8 +373,7 @@
             <ListView
                 android:id="@+id/lv_trail_videos"
                 android:layout_width="match_parent"
-                android:layout_weight="4"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_margin="@dimen/detail_views_little_margin"
                 android:scrollbars="vertical"
                 />
@@ -400,8 +396,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="3"
-            android:elevation="@dimen/scroll_layout_elevation"
-            android:translationZ="@dimen/scroll_layout_elevation"
             android:orientation="vertical"
             android:scrollbars="vertical">
 

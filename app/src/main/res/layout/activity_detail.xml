@@ -343,6 +343,7 @@
 
         <!-- Videos section -->
         <LinearLayout
+            android:id="@+id/ll_detail_trailer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="3"
@@ -393,6 +394,7 @@
 
         <!-- Review section -->
         <LinearLayout
+            android:id="@+id/ll_detail_review"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="3"

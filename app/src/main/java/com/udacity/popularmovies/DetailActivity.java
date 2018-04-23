@@ -1,9 +1,7 @@
 package com.udacity.popularmovies;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
+import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
@@ -17,19 +15,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
-import com.udacity.popularmovies.data.MovieDbHelper;
+import com.udacity.popularmovies.data.MovieDbContract;
 import com.udacity.popularmovies.model.Movie;
 import com.udacity.popularmovies.model.Review;
 import com.udacity.popularmovies.model.ReviewContainer;
 import com.udacity.popularmovies.model.Video;
 import com.udacity.popularmovies.model.VideoContainer;
-import com.udacity.popularmovies.utilities.DbUtil;
+import com.udacity.popularmovies.utilities.ContentProviderUtil;
 import com.udacity.popularmovies.utilities.NetworkUtil;
 
 import java.io.Serializable;
@@ -65,10 +64,9 @@ public class DetailActivity extends AppCompatActivity
     TextView mMoreReviews;
     Button mAddRemoveFavorite;
     ListView lvTrailer, lvReview;
+    LinearLayout llTrailer,llReview;
 
-    // db helper
-    MovieDbHelper movieDbHelper;
-    DbUtil dbUtil;
+    ContentProviderUtil cpUtil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,8 +75,7 @@ public class DetailActivity extends AppCompatActivity
 
         getViewObjects();
 
-        movieDbHelper = new MovieDbHelper(this);
-        dbUtil = new DbUtil(movieDbHelper);
+        cpUtil = new ContentProviderUtil(this);
 
         videoList = new ArrayList();
         reviewList = new ArrayList();
@@ -90,6 +87,11 @@ public class DetailActivity extends AppCompatActivity
             genres = bundle.getString("genres");
             selectedOption = bundle.getString(MainActivity.SELECTED_OPTION);
         }
+
+        getSupportActionBar().setLogo(R.drawable.ic_logo_primary_green);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        mProgressBar.setVisibility(View.VISIBLE);
+        getSupportActionBar().setTitle(getString(R.string.loading));
 
         trailerAsyncTask = new TrailerAsyncTask();
         reviewAsyncTask = new ReviewAsyncTask();
@@ -103,28 +105,25 @@ public class DetailActivity extends AppCompatActivity
 
         if (movie_id != null) {
 
-            if (isThereAConnection()) {
-                // get and start loader
-                getSupportLoaderManager().initLoader(LOADER_ID, null, this);
+            if (NetworkUtil.isThereAConnection(this)) {
 
+                if (!loaderWasStarted()) {
+                    getSupportLoaderManager().initLoader(LOADER_ID, null, this);
+                } else {
+                    getSupportLoaderManager().restartLoader(LOADER_ID, null, this);
+                }
                 trailerAsyncTask.execute();
                 reviewAsyncTask.execute();
 
             } else {
-                // check the movie list was loaded before
-                if (!loaderWasStarted()) {
-                    showErrorMessage(getString(R.string.connection_error_message));
-                } else {
-                    getSupportLoaderManager().restartLoader(LOADER_ID, null, this);
+                if(selectedOption.equalsIgnoreCase(NetworkUtil.FAVORITES_MOVIE_PATH)){
+                    // get movie info through db
+                    viewMovieFromDb();
+                }else{
+                    showErrorMessage(getString(R.string.error_message));
                 }
             }
 
-            mProgressBar.setVisibility(View.VISIBLE);
-
-            getSupportActionBar().setLogo(R.drawable.ic_logo_primary_green);
-            getSupportActionBar().setHomeButtonEnabled(true);
-            //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle(getString(R.string.loading));
         } else {
             showErrorMessage(getString(R.string.error_message));
         }
@@ -182,7 +181,9 @@ public class DetailActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 if (selectedMovie != null) {
-                    dbUtil.addRemoveFavorite(selectedMovie, genres);
+                    cpUtil.addRemoveFavorite(MovieDbContract.FavoriteEntry.CONTENT_URI,
+                                            selectedMovie,
+                                            genres);
                     invertTheFavoriteButton();
                 }
             }
@@ -211,6 +212,8 @@ public class DetailActivity extends AppCompatActivity
         mReviewProgressBar = findViewById(R.id.pb_review);
         mReviewProgressBar.setVisibility(View.VISIBLE);
 
+        llTrailer = findViewById(R.id.ll_detail_trailer);
+        llReview = findViewById(R.id.ll_detail_review);
     }
 
 
@@ -270,17 +273,6 @@ public class DetailActivity extends AppCompatActivity
     public void onLoaderReset(Loader<Movie> loader) {
     }
 
-
-    /**
-     * Check internet connection
-     *
-     * @return
-     */
-    public boolean isThereAConnection() {
-        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netInfo = cm.getActiveNetworkInfo();
-        return netInfo != null && netInfo.isConnectedOrConnecting();
-    }
 
     /**
      * if the loader was started, it doesn't need to start again.
@@ -343,10 +335,13 @@ public class DetailActivity extends AppCompatActivity
             mOverviewView.setText(movie.getOverview());
 
             // if the movie exists in favorite db,
-            String id = dbUtil.getMovieById(movie.getId());
-            if (id != "" && id != null) {
+            if (cpUtil.isFavorite(movie.getId())) {
                 invertTheFavoriteButton();
             }
+
+            mProgressBar.setVisibility(View.INVISIBLE);
+            mConstraintContainer.setVisibility(View.VISIBLE);
+            getSupportActionBar().setTitle(movie.getTitle());
         }
     }
 
@@ -354,6 +349,8 @@ public class DetailActivity extends AppCompatActivity
 
         mConstraintContainer.setVisibility(View.INVISIBLE);
         mProgressBar.setVisibility(View.INVISIBLE);
+        llReview.setVisibility(View.INVISIBLE);
+        llTrailer.setVisibility(View.INVISIBLE);
 
         Toast toastMessage = Toast.makeText(this, errorMsg, Toast.LENGTH_LONG);
         toastMessage.setGravity(Gravity.CENTER, 0, 0);
@@ -396,6 +393,7 @@ public class DetailActivity extends AppCompatActivity
                 trailerAdapter.setData(data);
                 mTrailerProgressBar.setVisibility(View.GONE);
                 lvTrailer.setVisibility(View.VISIBLE);
+                llTrailer.setVisibility(View.VISIBLE);
 
 
                 int height = (int) getResources().getDimension(R.dimen.trailer_row_height);
@@ -429,10 +427,45 @@ public class DetailActivity extends AppCompatActivity
                 reviewList = data.getResults();
                 reviewAdapter.setData(data);
                 mReviewProgressBar.setVisibility(View.GONE);
+                llReview.setVisibility(View.VISIBLE);
                 lvReview.setVisibility(View.VISIBLE);
 
             }
         }
+    }
+
+
+    private void viewMovieFromDb(){
+        new AsyncTask<Void,Void,Movie>(){
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                llReview.setVisibility(View.INVISIBLE);
+                llTrailer.setVisibility(View.INVISIBLE);
+                mProgressBar.setVisibility(View.VISIBLE);
+                mConstraintContainer.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            protected Movie doInBackground(Void... voids) {
+                return cpUtil.getMovieById(movie_id);
+            }
+
+            @Override
+            protected void onPostExecute(Movie movie) {
+                super.onPostExecute(movie);
+
+                if(movie != null ){
+                    showMovieDetail(movie);
+
+                    lvReview.setVisibility(View.INVISIBLE);
+                    lvTrailer.setVisibility(View.INVISIBLE);
+                }else{
+                    showErrorMessage(getString(R.string.error_no_favorite_movie));
+                }
+            }
+        }.execute();
     }
 
 }

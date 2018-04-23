@@ -261,4 +261,16 @@ public class NetworkUtil {
     }
 
 
+    /**
+     * Check internet connection
+     *
+     * @return
+     */
+    public static boolean isThereAConnection(Context context) {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
+    }
+
+
 }
